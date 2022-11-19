@@ -58,31 +58,27 @@ export const storageUnitSlice = createSlice({
   initialState,
   reducers: {
   },
-  extraReducers: {
-    [createStorageUnit.fulfilled]: (state, action) => {
-        state.storageUnitArray.push(action.payload)
-    },
-    [getStorageUnit.fulfilled]: (state, action) => {
-        
-    },
-    [getAllStorageUnits.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(createStorageUnit.fulfilled, (state, action) => {
+      state.storageUnitArray.push(action.payload)
+    })
+    builder.addCase(getAllStorageUnits.fulfilled, (state, action) => {
       state.storageUnitArray = action.payload;
-    },
-    [updateStorageUnit.fulfilled]: (state, action) => {
+    })
+    builder.addCase(updateStorageUnit.fulfilled, (state, action) => {
       state.storageUnitArray = state.storageUnitArray.map(unit => {
         if (unit._id === action.payload._id) {
           return unit = action.payload
         }
         return unit
       })
-    },
-    [deleteStorageUnit.fulfilled]: (state, action) => ({
-        ...state,
-        storageUnitArray: state.storageUnitArray.filter(unit => unit._id !== action.payload.id)
-    }),
-    [deleteAllStorageUnits.fulfilled]: () => {
+    })
+    builder.addCase(deleteStorageUnit.fulfilled, (state, action) => {
+      state.storageUnitArray = state.storageUnitArray.filter(unit => unit._id !== action.payload.id)
+    })
+    builder.addCase(deleteAllStorageUnits.fulfilled, (state, action) => {
       return initialState
-    },
+    })
   },
 })
 

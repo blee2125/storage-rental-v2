@@ -58,31 +58,27 @@ export const customerSlice = createSlice({
   initialState,
   reducers: {
   },
-  extraReducers: {
-    [createCustomer.fulfilled]: (state, action) => {
-        state.customerArray.push(action.payload)
-    },
-    [getCustomer.fulfilled]: (state, action) => {
-        
-    },
-    [getAllCustomers.fulfilled]: (state, action) => {
-        state.customerArray = action.payload;
-    },
-    [updateCustomer.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(createCustomer.fulfilled, (state, action) => {
+      state.customerArray.push(action.payload)
+    })
+    builder.addCase(getAllCustomers.fulfilled, (state, action) => {
+      state.customerArray = action.payload;
+    })
+    builder.addCase(updateCustomer.fulfilled, (state, action) => {
       state.customerArray = state.customerArray.map(customer => {
         if (customer._id === action.payload._id) {
           return customer = action.payload
         }
         return customer
       })
-    },
-    [deleteCustomer.fulfilled]: (state, action) => ({
-        ...state,
-        customerArray: state.customerArray.filter(customer => customer._id !== action.payload.id)
-    }),
-    [deleteAllCustomers.fulfilled]: () => {
+    })
+    builder.addCase(deleteCustomer.fulfilled, (state, action) => {
+      state.customerArray = state.customerArray.filter(customer => customer._id !== action.payload.id)
+    })
+    builder.addCase(deleteAllCustomers.fulfilled, (state, action) => {
       return initialState
-    },
+    })
   },
 })
 
