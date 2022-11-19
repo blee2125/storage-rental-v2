@@ -15,25 +15,39 @@ function LeaseView(props) {
         navigate(path)
     }
 
+    function viewCustomer() {
+        let path = `../../customers/view/${customer._id}`
+        navigate(path)
+    }
+
+    function viewUnit() {
+        let path = `../../storage-units/view/${unit._id}`
+        navigate(path)
+    }
+
     return (
         <div>
             <table>
                 <tbody>
-                <tr>
+                <tr onClick={viewUnit}>
                     <td>unit</td>
-                    <td>{customer.customerName}</td>
-                </tr>
-                <tr>
-                    <td>customer</td>
                     <td>{unit.unitNumber}</td>
+                </tr>
+                <tr onClick={viewCustomer}>
+                    <td>customer</td>
+                    <td>{customer.name}</td>
                 </tr>
                 <tr>
                     <td>rate</td>
                     <td>{lease.rate}</td>
                 </tr>
                 <tr>
-                    <td>lenght</td>
-                    <td>{lease.leaseLength}</td>
+                    <td>start date</td>
+                    <td>{lease.startDate}</td>
+                </tr>
+                <tr>
+                    <td>end date</td>
+                    <td>{lease.endDate}</td>
                 </tr>
                 </tbody>
             </table>
