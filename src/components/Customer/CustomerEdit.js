@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { connect } from "react-redux";
 import { Button } from "react-bootstrap"
-import { createCustomer } from "../../reducers/CustomerReducer"
-import CustomerForm from "./CustomerForms/CustomerForm"
+import { connect } from "react-redux";
+import { updateCustomer } from "../../reducers/CustomerReducer"
+import CustomerForm from "./CustomerForms/CustomerForm";
 
-function Customers(props) {
+function CustomerEdit(props) {
     const [customerObject, setCustomerObject] = useState({
         customerName: ''
     });
@@ -20,7 +20,7 @@ function Customers(props) {
 
     const handleSubmit = () => {
         if (customerObject.customerName !== '') {
-            props.createCustomer(customerObject)
+            props.updateCustomer(customerObject)
             .unwrap()
             .then((data) => {
                 console.log(data)
@@ -31,8 +31,8 @@ function Customers(props) {
 
     return (
         <div>
-            customers
-            <CustomerForm
+            Create Customer
+            <CustomerForm 
                 customerObject={customerObject}
                 updateData={updateData}
             />
@@ -41,4 +41,4 @@ function Customers(props) {
     )
 }
 
-export default connect(null, { createCustomer }) (Customers)
+export default connect(null, { updateCustomer }) (CustomerEdit)
