@@ -69,7 +69,12 @@ export const customerSlice = createSlice({
         state.customerArray = action.payload;
     },
     [updateCustomer.fulfilled]: (state, action) => {
-
+      state.customerArray = state.customerArray.map(customer => {
+        if (customer._id === action.payload._id) {
+          return customer = action.payload
+        }
+        return customer
+      })
     },
     [deleteCustomer.fulfilled]: (state, action) => ({
         ...state,

@@ -16,7 +16,7 @@ function NavBar() {
             <NavDropdown title="Customer" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/customers">Customers</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/customer/add">
+              <NavDropdown.Item as={Link} to="/customers/add">
                 Add Customer
               </NavDropdown.Item>
             </NavDropdown>
