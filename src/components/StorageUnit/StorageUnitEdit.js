@@ -10,7 +10,11 @@ function StorageUnitEdit(props) {
     const routeParams = useParams();
     const storageUnit = useSelector((state) => state.storageUnitState.storageUnitArray.filter(u => u._id === routeParams.id)[0])
     const [storageUnitObject, setStorageUnitObject] = useState({
-        unitNumber: ''
+        unitNumber: '',
+        type: '',
+        size: '',
+        location: '',
+        available: true
     });
 
     const updateData = (target, value) => {
