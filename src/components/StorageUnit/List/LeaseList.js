@@ -3,11 +3,11 @@ import { Table } from "react-bootstrap";
 import LeaseListItem from "./LeaseListItem";
 
 function LeaseList(props) { 
-    const listLeases = props.leaseArray.map((lease, index) => {
+    const listLeases = props.leases.map((lease) => {
         return (
             <LeaseListItem 
                 lease={lease} 
-                key={index} 
+                key={lease._id} 
                 id={lease._id} 
             />
         )
@@ -18,11 +18,8 @@ function LeaseList(props) {
             <Table>
                 <thead>
                     <tr>
-                        <td><b>unit</b></td>
-                        <td><b>customer</b></td>
-                        <td><b>rate</b></td>
-                        <td><b>start date</b></td>
-                        <td><b>end date</b></td>
+                        <td><b>Lease</b></td>
+                        <td><b>Customer</b></td>
                     </tr>
                 </thead>
                 <tbody>

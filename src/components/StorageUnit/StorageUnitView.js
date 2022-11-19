@@ -2,12 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import LeaseList from "./List/LeaseList";
 
 
 function StorageUnitView(props) {
     let navigate = useNavigate();
     const routeParams = useParams();
     const storageUnit = useSelector((state) => state.storageUnitState.storageUnitArray.filter(u => u._id === routeParams.id)[0])
+    const leases = useSelector((state) => state.leaseState.leaseArray.filter(l => l.unitId === routeParams.id))
 
     function editStorageUnit() {
         let path = `../edit/${storageUnit._id}`
@@ -38,6 +40,10 @@ function StorageUnitView(props) {
             </table>
             
             <button onClick={editStorageUnit}>edit</button>
+
+            <LeaseList
+                leases={leases}
+            />
         </div>
     )
 }
