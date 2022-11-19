@@ -22,6 +22,7 @@ function StorageUnitList(props) {
                         <td><b>Type</b></td>
                         <td><b>Size</b></td>
                         <td><b>Location</b></td>
+                        <td><b>Available</b></td>
                     </tr>
                 </thead>
                 <tbody>
