@@ -19,11 +19,7 @@ function CustomerUnitList(props) {
                 <thead>
                     <tr>
                         <td><b>Name</b></td>
-                    </tr>
-                    <tr>
                         <td><b>Email</b></td>
-                    </tr>
-                    <tr>
                         <td><b>Phone</b></td>
                     </tr>
                 </thead>
