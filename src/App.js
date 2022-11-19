@@ -1,25 +1,23 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Provider } from 'react-redux'
-import store from './store'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import NavBar from './components/View/NavBar';
+import Home from './components/View/Home'
 import Customer from './components/Customer/Customer'
-import StorageUnit from './components/StorageUnit/StorageUnit'
+import StorageUnits from './components/StorageUnit/StorageUnits'
+import StorageUnitAdd from './components/StorageUnit/StorageUnitAdd';
 
 function App() {
   return (
     <div className="App">
-      <Provider store={store}>
         <NavBar/>
-        <BrowserRouter>
           <Routes>
+            <Route path="/" element={<Home/>}/>
             <Route path="/customers" element={<Customer/>}/>
-            <Route path="/storage-units" element={<StorageUnit/>}/>
+            <Route path="/storage-units" element={<StorageUnits/>}/>
+            <Route path="/storage-units/add" element={<StorageUnitAdd/>}/>
           </Routes>
-        </BrowserRouter>
-      </Provider>
     </div>
   );
 }
