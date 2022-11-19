@@ -12,6 +12,10 @@ import StorageUnits from './components/StorageUnit/StorageUnits'
 import StorageUnitAdd from './components/StorageUnit/StorageUnitAdd';
 import StorageUnitView from './components/StorageUnit/StorageUnitView';
 import StorageUnitEdit from './components/StorageUnit/StorageUnitEdit';
+import Leases from './components/Lease/Leases'
+import LeaseAdd from './components/Lease/LeaseAdd';
+import LeaseView from './components/Lease/LeaseView';
+import LeaseEdit from './components/Lease/LeaseEdit';
 
 function App() {
 
@@ -32,7 +36,12 @@ function App() {
               <Route path="view/:id" element={<StorageUnitView/>}/>
               <Route path="edit/:id" element={<StorageUnitEdit/>}/>
             </Route>
-                                
+            <Route path='leases'>
+              <Route path="" element={<Leases/>}/>
+              <Route path="add" element={<LeaseAdd/>}/>
+              <Route path="view/:id" element={<LeaseView/>}/>
+              <Route path="edit/:id" element={<LeaseEdit/>}/>
+            </Route>            
           </Routes>
     </div>
   );
