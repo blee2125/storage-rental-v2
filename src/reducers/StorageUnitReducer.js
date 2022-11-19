@@ -66,10 +66,15 @@ export const storageUnitSlice = createSlice({
         
     },
     [getAllStorageUnits.fulfilled]: (state, action) => {
-        state.storageUnitArray = action.payload;
+      state.storageUnitArray = action.payload;
     },
     [updateStorageUnit.fulfilled]: (state, action) => {
-
+      state.storageUnitArray = state.storageUnitArray.map(unit => {
+        if (unit._id === action.payload._id) {
+          return unit = action.payload
+        }
+        return unit
+      })
     },
     [deleteStorageUnit.fulfilled]: (state, action) => ({
         ...state,
