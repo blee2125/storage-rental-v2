@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Button } from "react-bootstrap"
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { updateStorageUnit } from "../../reducers/StorageUnitReducer"
 import StorageUnitForm from "./StorageUnitForms/StorageUnitForm";
+import { useParams, useNavigate } from "react-router-dom";
 
 function StorageUnitEdit(props) {
+    let navigate = useNavigate();
+    const routeParams = useParams();
+    const storageUnit = useSelector((state) => state.storageUnitState.storageUnitArray.filter(u => u._id === routeParams.id)[0])
     const [storageUnitObject, setStorageUnitObject] = useState({
         unitNumber: ''
     });
@@ -20,18 +24,26 @@ function StorageUnitEdit(props) {
 
     const handleSubmit = () => {
         if (storageUnitObject.unitNumber !== '') {
-            props.updateStorageUnit(storageUnitObject)
+            props.updateStorageUnit({id: storageUnit._id, data: storageUnitObject})
             .unwrap()
             .then((data) => {
-                console.log(data)
+                navigate(`/storage-units/view/${data._id}`)
             })
             .catch((e) => {console.log(e)});
         }
     }
 
+    useEffect(() => {
+        setStorageUnitObject(storageUnitObject => ({
+            ...storageUnitObject,
+            ...storageUnit
+        }))
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <div>
-            Create Storage Unit
+            Edit Storage Unit
             <StorageUnitForm 
                 storageUnitObject={storageUnitObject}
                 updateData={updateData}
