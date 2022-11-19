@@ -15,6 +15,10 @@ function NavBar() {
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <NavDropdown title="Customer" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/customers">Customers</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/customer/add">
+                Add Customer
+              </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Storage Units" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/storage-units">Storage Units</NavDropdown.Item>
