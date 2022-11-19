@@ -18,7 +18,7 @@ function LeaseListItem(props) {
 
     return (
         <tr >
-            <td onClick={viewLease}>Lease</td>
+            <td onClick={viewLease}>{props.lease.startDate} - {props.lease.endDate}</td>
             <td onClick={viewCustomer}>{customer.name}</td>
         </tr>
     );
