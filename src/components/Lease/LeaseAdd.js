@@ -13,7 +13,8 @@ function LeaseAdd(props) {
         unitId: '',
         customerId: '',
         rate: '',
-        leaseLength: ''
+        startDate: '',
+        endDate: ''
     });
 
     const updateData = (target, value) => {
