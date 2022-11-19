@@ -27,6 +27,13 @@ function NavBar() {
                 Add Storage Unit
               </NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title="Leases" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/leases">Leases</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/leases/add">
+                Add Lease
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
