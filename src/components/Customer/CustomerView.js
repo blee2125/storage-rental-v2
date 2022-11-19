@@ -16,8 +16,34 @@ function CustomerView(props) {
 
     return (
         <div>
-            view customer - 
-            {customer.customerName}
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            {customer.name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            {customer.email}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Phone
+                        </td>
+                        <td>
+                            {customer.phone}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <button onClick={editCustomer}>edit</button>
         </div>
     )

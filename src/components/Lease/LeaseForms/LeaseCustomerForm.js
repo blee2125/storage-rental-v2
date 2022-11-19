@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 export const LeaseCustomerForm = (props) => {
 
     const listCustomers = props.customers.map(customer => {
-            return <option value={customer._id} key={customer._id}>{customer.customerName}</option>
+            return <option value={customer._id} key={customer._id}>{customer.name}</option>
         })
 
     return (
