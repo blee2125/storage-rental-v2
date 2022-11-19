@@ -6,7 +6,9 @@ import CustomerForm from "./CustomerForms/CustomerForm";
 
 function CustomerAdd(props) {
     const [customerObject, setCustomerObject] = useState({
-        customerName: ''
+        name: '',
+        email: '',
+        phone: ''
     });
 
     const updateData = (target, value) => {

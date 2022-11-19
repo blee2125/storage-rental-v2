@@ -12,7 +12,9 @@ function CustomerListItem(props) {
 
     return (
         <tr onClick={()=> viewCustomer()}>
-            <td>{props.customer.customerName}</td>
+            <td>{props.customer.name}</td>
+            <td>{props.customer.email}</td>
+            <td>{props.customer.phone}</td>
         </tr>
     );
 }

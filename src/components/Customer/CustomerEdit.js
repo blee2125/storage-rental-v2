@@ -10,7 +10,9 @@ function CustomerEdit(props) {
     const routeParams = useParams();
     const customer = useSelector((state) => state.customerState.customerArray.filter(c => c._id === routeParams.id)[0])
     const [customerObject, setCustomerObject] = useState({
-        customerName: ''
+        name: '',
+        email: '',
+        phone: ''
     });
 
     const updateData = (target, value) => {
