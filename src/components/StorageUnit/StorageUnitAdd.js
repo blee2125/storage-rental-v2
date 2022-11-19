@@ -6,7 +6,11 @@ import StorageUnitForm from "./StorageUnitForms/StorageUnitForm";
 
 function StorageUnitAdd(props) {
     const [storageUnitObject, setStorageUnitObject] = useState({
-        unitNumber: ''
+        unitNumber: '',
+        type: '',
+        size: '',
+        location: '',
+        available: true
     });
 
     const updateData = (target, value) => {
