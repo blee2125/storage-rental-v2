@@ -16,7 +16,27 @@ function StorageUnitView(props) {
 
     return (
         <div>
-            {storageUnit.unitNumber}
+            <table>
+                <tbody>
+                <tr>
+                    <td>Unit Number</td>
+                    <td>{storageUnit.unitNumber}</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>{storageUnit.type}</td>
+                </tr>
+                <tr>
+                    <td>Size</td>
+                    <td>{storageUnit.size}</td>
+                </tr>
+                <tr>
+                    <td>Location</td>
+                    <td>{storageUnit.location}</td>
+                </tr>
+                </tbody>
+            </table>
+            
             <button onClick={editStorageUnit}>edit</button>
         </div>
     )

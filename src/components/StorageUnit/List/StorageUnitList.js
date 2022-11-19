@@ -19,6 +19,9 @@ function StorageUnitList(props) {
                 <thead>
                     <tr>
                         <td><b>Unit Number</b></td>
+                        <td><b>Type</b></td>
+                        <td><b>Size</b></td>
+                        <td><b>Location</b></td>
                     </tr>
                 </thead>
                 <tbody>
