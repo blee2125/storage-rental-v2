@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createStorageUnit } from "../../reducers/StorageUnitReducer"
 import StorageUnitForm from "./StorageUnitForms/StorageUnitForm";
 
-function StorageUnits(props) {
+function StorageUnitAdd(props) {
     const [storageUnitObject, setStorageUnitObject] = useState({
         unitNumber: ''
     });
@@ -31,7 +31,7 @@ function StorageUnits(props) {
 
     return (
         <div>
-            storage units
+            Create Storage Unit
             <StorageUnitForm 
                 storageUnitObject={storageUnitObject}
                 updateData={updateData}
@@ -41,4 +41,4 @@ function StorageUnits(props) {
     )
 }
 
-export default connect(null, { createStorageUnit }) (StorageUnits)
+export default connect(null, { createStorageUnit }) (StorageUnitAdd)
