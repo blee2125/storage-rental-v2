@@ -12,6 +12,9 @@ function StorageUnitListItem(props) {
     return (
         <tr onClick={()=> viewStorageUnit()}>
             <td>{props.storageUnit.unitNumber}</td>
+            <td>{props.storageUnit.type}</td>
+            <td>{props.storageUnit.size}</td>
+            <td>{props.storageUnit.location}</td>
         </tr>
     );
 }
