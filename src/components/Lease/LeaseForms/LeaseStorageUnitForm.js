@@ -1,36 +1,81 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Form } from "react-bootstrap";
 
 export const LeaseStorageUnitForm = (props) => {
+  const [locations, setLocations] = useState([]);
+  const [location, setLocation] = useState('');  
+  const [sizeArray, setSizeArray] = useState([]);
+  const [size, setSize] = useState('');
+  const [units] = useState(props.units)
 
-  const listLocations = () => {
-    const locations = []
+  const uniqueLocations = () => {
+    const locFilter = []
     props.units.forEach((unit) => {
-      locations.push(unit.location)
+      locFilter.push(unit.location)
     })
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
-    const filteredLoc = locations.filter(onlyUnique)
-    return(filteredLoc)
+    const filteredLoc = locFilter.filter(onlyUnique)
+    setLocations(filteredLoc)
+  }
+  
+  const mapLocations = locations.map((loc, index) => {
+    return <option value={loc} key={index}>{loc}</option>
+  })
+
+  const uniqueSize = () => {
+    const sizeFilter = []
+    props.units.forEach((unit) => {
+      sizeFilter.push(unit.size)
+    })
+    function onlyUnique(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+    const filteredSize = sizeFilter.filter(onlyUnique)
+    setSizeArray(filteredSize)
   }
 
-    const listStorageUnits = props.units.map(unit => {
-            return <option value={unit._id} key={unit._id}>{unit.unitNumber}</option>
-        })
+  const mapSize = sizeArray.map((s, index) => {
+    return <option value={s} key={index}>{s}</option>
+  })
+
+  const listStorageUnits = units.filter(unit => unit.location === location)
+    .filter(unit => unit.size === size)
+    .map(unit => {
+      return <option value={unit._id} key={unit._id}>{unit.unitNumber} - {unit.available ? 'available' : 'not available'}</option>
+  })
+  
+  useEffect(() => {
+    uniqueLocations()
+    uniqueSize()
+    // eslint-disable-next-line
+  }, [])
 
     return (
       <div>
         <Form.Group className="mb-3" controlId="formGroupLocation">
           <Form.Label>Location</Form.Label>
           <Form.Select
-            value={props.location || ''}
-            onChange={e => props.updateData('unitId', e.target.value)}
+            value={location || ''}
+            onChange={e => setLocation(e.target.value)}
           >
             <option value=''></option>
-            {listStorageUnits}
+            {mapLocations}
           </Form.Select>
         </Form.Group>
+        {location === '' ? '' : 
+        <Form.Group className="mb-3" controlId="formGroupSize">
+          <Form.Label>Size</Form.Label>
+          <Form.Select
+            value={size || ''}
+            onChange={e => setSize(e.target.value)}
+          >
+            <option value=''></option>
+            {mapSize}
+          </Form.Select>
+        </Form.Group>}
+        {size === '' ? '' :
         <Form.Group className="mb-3" controlId="formGroupUnit">
           <Form.Label>Unit</Form.Label>
           <Form.Select
@@ -40,8 +85,8 @@ export const LeaseStorageUnitForm = (props) => {
             <option value=''></option>
             {listStorageUnits}
           </Form.Select>
-        </Form.Group>
-        {listLocations()}
+        </Form.Group>}
+        
       </div>
     );
 }

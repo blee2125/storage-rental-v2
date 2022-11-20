@@ -13,9 +13,9 @@ import StorageUnitAdd from './components/StorageUnit/StorageUnitAdd';
 import StorageUnitView from './components/StorageUnit/StorageUnitView';
 import StorageUnitEdit from './components/StorageUnit/StorageUnitEdit';
 import Leases from './components/Lease/Leases'
-import LeaseAdd from './components/Lease/LeaseAdd';
+import LeaseAdd from './components/Lease/LeaseForms/LeaseAdd';
 import LeaseView from './components/Lease/LeaseView';
-import LeaseEdit from './components/Lease/LeaseEdit';
+import LeaseEdit from './components/Lease/LeaseForms/LeaseEdit';
 
 function App() {
 
