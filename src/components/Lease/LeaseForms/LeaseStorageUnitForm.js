@@ -43,7 +43,11 @@ export const LeaseStorageUnitForm = (props) => {
   const listStorageUnits = units.filter(unit => unit.location === location)
     .filter(unit => unit.size === size)
     .map(unit => {
-      return <option value={unit._id} key={unit._id}>{unit.unitNumber} - {unit.available ? 'available' : 'not available'}</option>
+      if (unit.available === false) {
+        return <option value={unit._id} key={unit._id} disabled>{unit.unitNumber} - {unit.available ? 'available' : 'not available'}</option>
+      } else {
+        return <option value={unit._id} key={unit._id}>{unit.unitNumber} - {unit.available ? 'available' : 'not available'}</option>
+      }
   })
   
   useEffect(() => {
