@@ -17,7 +17,21 @@ import LeaseAdd from './components/Lease/LeaseForms/LeaseAdd';
 import LeaseView from './components/Lease/LeaseView';
 import LeaseEdit from './components/Lease/LeaseForms/LeaseEdit';
 
-function App() {
+import {useEffect} from "react";
+import { connect } from "react-redux";
+
+import { getAllLeases } from "./reducers/LeaseReducer"
+import { getAllCustomers } from "./reducers/CustomerReducer"
+import { getAllStorageUnits } from "./reducers/StorageUnitReducer"
+
+function App(props) {
+
+  useEffect(() => {
+    props.getAllLeases()
+    props.getAllCustomers()
+    props.getAllStorageUnits()
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="App">
@@ -47,4 +61,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, { getAllLeases, getAllCustomers, getAllStorageUnits }) (App);
