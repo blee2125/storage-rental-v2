@@ -30,7 +30,8 @@ export const LeaseForm = (props) => {
           <Form.Label>Start Date</Form.Label>
           <Form.Control 
             type="date" 
-            placeholder="Start" 
+            placeholder="Start"
+            max={props.leaseObject.endDate}
             value={props.leaseObject.startDate}
             onChange={e => props.updateData('startDate', e.target.value)}
           />
@@ -40,6 +41,7 @@ export const LeaseForm = (props) => {
           <Form.Control 
             type="date" 
             placeholder="end" 
+            min={props.leaseObject.startDate}
             value={props.leaseObject.endDate}
             onChange={e => props.updateData('endDate', e.target.value)}
           />
