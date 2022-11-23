@@ -18,7 +18,8 @@ function LeaseList(props) {
             <Table>
                 <thead>
                     <tr>
-                        <td><b>Lease</b></td>
+                    <td><b>Lease Dates</b></td>
+                    <td><b>Leases</b></td>
                         <td><b>Customer</b></td>
                     </tr>
                 </thead>
