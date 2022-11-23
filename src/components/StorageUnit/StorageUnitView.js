@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import LeaseList from "./List/LeaseList";
-
+import { updateStorageUnit } from "../../reducers/StorageUnitReducer";
 
 function StorageUnitView(props) {
     let navigate = useNavigate();
@@ -14,6 +14,20 @@ function StorageUnitView(props) {
     function editStorageUnit() {
         let path = `../edit/${storageUnit._id}`
         navigate(path)
+    }
+
+    function updateAvailable() {
+        props.updateStorageUnit({id: storageUnit._id, data: {...storageUnit, available: true}})
+        .unwrap()
+        .then((data) => {})
+        .catch((e) => {console.log(e)});
+    }
+
+    function updateUnavailable() {
+        props.updateStorageUnit({id: storageUnit._id, data: {...storageUnit, available: false}})
+        .unwrap()
+        .then((data) => {})
+        .catch((e) => {console.log(e)});
     }
 
     return (
@@ -36,9 +50,15 @@ function StorageUnitView(props) {
                     <td>Location</td>
                     <td>{storageUnit.location}</td>
                 </tr>
+                <tr>
+                    <td>Available</td>
+                    <td>{storageUnit.available ? 'Yes' : 'No'}</td>
+                </tr>
                 </tbody>
             </table>
             
+            <button onClick={updateAvailable}>Set Available</button>
+            <button onClick={updateUnavailable}>Set Unavailable</button>
             <button onClick={editStorageUnit}>edit</button>
 
             <LeaseList
@@ -48,4 +68,4 @@ function StorageUnitView(props) {
     )
 }
 
-export default (StorageUnitView)
+export default connect(null, { updateStorageUnit }) (StorageUnitView)
