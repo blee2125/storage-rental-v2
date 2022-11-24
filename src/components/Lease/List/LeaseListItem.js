@@ -1,6 +1,7 @@
 import React from "react";
 import { connect, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import DateFunc from '../../../functions/DateFunc'
 
 function LeaseListItem(props) {
     const customer = useSelector((state) => state.customerState.customerArray.filter(c => c._id === props.lease.customerId)[0])
@@ -12,6 +13,8 @@ function LeaseListItem(props) {
         navigate(path)
     }
 
+    const leaseLength = DateFunc.leaseLength(props.lease.startDate, props.lease.endDate)
+
     return (
         <tr onClick={()=> viewLease()}>
             <td>{unit.unitNumber}</td>
@@ -19,6 +22,7 @@ function LeaseListItem(props) {
             <td>{props.lease.rate}</td>
             <td>{props.lease.startDate}</td>
             <td>{props.lease.endDate}</td>
+            <td>{leaseLength}</td>
         </tr>
     );
 }
