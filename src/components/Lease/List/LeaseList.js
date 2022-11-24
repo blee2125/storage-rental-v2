@@ -21,6 +21,7 @@ function LeaseList(props) {
                         <td><b>unit</b></td>
                         <td><b>customer</b></td>
                         <td><b>rate</b></td>
+                        <td><b>total cost</b></td>
                         <td><b>start date</b></td>
                         <td><b>end date</b></td>
                     </tr>
