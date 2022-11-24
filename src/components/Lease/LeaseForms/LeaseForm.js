@@ -5,8 +5,11 @@ import LeaseStorageUnitForm from "./LeaseStorageUnitForm";
 
 export const LeaseForm = (props) => {
 
+
+
     return (
-      <Form >
+      <div>
+      <Form onChange={props.calcTotal()}>
         <LeaseCustomerForm
           customers={props.customers}
           customerId={props.leaseObject.customerId}
@@ -46,7 +49,10 @@ export const LeaseForm = (props) => {
             onChange={e => props.updateData('endDate', e.target.value)}
           />
         </Form.Group>
+        
       </Form>
+      total cost {props.leaseObject.totalCost}
+      </div>
     );
 }
 
