@@ -15,6 +15,11 @@ function CustomerView(props) {
         navigate(path)
     }
 
+    function leaseForm() {
+        let path = `../../leases/add`
+        navigate(path, {state: ['customerId', customer._id]})
+    }
+
     return (
         <div>
             <table>
@@ -54,6 +59,7 @@ function CustomerView(props) {
                 </tbody>
             </table>
             <button onClick={editCustomer}>edit</button>
+            <button onClick={leaseForm}>lease</button>
 
             <LeaseList
                 leases={leases}
