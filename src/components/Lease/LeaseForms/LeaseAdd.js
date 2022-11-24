@@ -5,8 +5,11 @@ import { createLease } from "../../../reducers/LeaseReducer"
 import LeaseForm from "./LeaseForm";
 import { getAllStorageUnits } from '../../../reducers/StorageUnitReducer'
 import { getAllCustomers } from '../../../reducers/CustomerReducer'
+import { useLocation } from "react-router-dom";
 
 function LeaseAdd(props) {
+    const {state} = useLocation();
+    const id = state;
     const customers = useSelector((state) => state.customerState.customerArray)
     const units = useSelector((state) => state.storageUnitState.storageUnitArray)
     const [leaseObject, setLeaseObject] = useState({
@@ -35,9 +38,16 @@ function LeaseAdd(props) {
         .catch((e) => {console.log(e)});
     }
 
+    const importKeyValue = () => {
+        if (id) {
+            updateData(id[0], id[1])
+        }
+    }
+
     useEffect(() => {
         props.getAllStorageUnits()
         props.getAllCustomers()
+        importKeyValue()
         // eslint-disable-next-line
     }, [])
 
