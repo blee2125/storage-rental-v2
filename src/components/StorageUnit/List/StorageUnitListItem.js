@@ -15,6 +15,7 @@ function StorageUnitListItem(props) {
             <td>{props.storageUnit.type}</td>
             <td>{props.storageUnit.size}</td>
             <td>{props.storageUnit.location}</td>
+            <td>{props.storageUnit.standardRate}</td>
             <td>{props.storageUnit.available ? 'yes' : 'no'}</td>
         </tr>
     );

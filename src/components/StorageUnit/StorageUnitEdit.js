@@ -14,6 +14,7 @@ function StorageUnitEdit(props) {
         type: '',
         size: '',
         location: '',
+        standardRate: '',
         available: true
     });
 

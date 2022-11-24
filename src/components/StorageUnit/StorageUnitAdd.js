@@ -10,6 +10,7 @@ function StorageUnitAdd(props) {
         type: '',
         size: '',
         location: '',
+        standardRate: '',
         available: true
     });
 

@@ -51,6 +51,10 @@ function StorageUnitView(props) {
                     <td>{storageUnit.location}</td>
                 </tr>
                 <tr>
+                    <td>Standard Rate</td>
+                    <td>{storageUnit.standardRate}</td>
+                </tr>
+                <tr>
                     <td>Available</td>
                     <td>{storageUnit.available ? 'Yes' : 'No'}</td>
                 </tr>

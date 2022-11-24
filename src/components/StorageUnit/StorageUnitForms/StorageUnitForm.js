@@ -41,6 +41,15 @@ export const StorageUnitForm = (props) => {
             onChange={e => props.updateData('location', e.target.value)}
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="formGroupStandardRate">
+          <Form.Label>Standard Rate</Form.Label>
+          <Form.Control 
+            type="number" 
+            placeholder="Standard Rate" 
+            value={props.storageUnitObject.standardRate}
+            onChange={e => props.updateData('standardRate', e.target.value)}
+          />
+        </Form.Group>
       </Form>
     );
 }
