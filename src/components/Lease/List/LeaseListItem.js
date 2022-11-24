@@ -20,6 +20,7 @@ function LeaseListItem(props) {
             <td>{unit.unitNumber}</td>
             <td>{customer.name}</td>
             <td>{props.lease.rate}</td>
+            <td>{props.lease.totalCost}</td>
             <td>{props.lease.startDate}</td>
             <td>{props.lease.endDate}</td>
             <td>{leaseLength}</td>
