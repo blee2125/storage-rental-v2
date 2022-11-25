@@ -4,6 +4,7 @@ import { getAllStorageUnits } from "../../reducers/StorageUnitReducer"
 import StorageUnitList from "./List/StorageUnitList";
 import StorageUnitSearch from "./List/StorageUnitSearch";
 import AvailableFilter from "./List/AvailableFilter";
+import { Card } from "react-bootstrap"
 
 function StorageUnits(props) {
     const units = useSelector((state) => state.storageUnitState.storageUnitArray)
@@ -49,14 +50,16 @@ function StorageUnits(props) {
     return (
         <div>
             storage unit
-            <StorageUnitSearch
-                search={search}
-                setSearch={setSearch}
-            />
-            <AvailableFilter
-                availableFilter={availableFilter}
-                setAvailableFilter={setAvailableFilter}
-            />
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <StorageUnitSearch
+                    search={search}
+                    setSearch={setSearch}
+                />
+                <AvailableFilter
+                    availableFilter={availableFilter}
+                    setAvailableFilter={setAvailableFilter}
+                />
+            </Card>
             <StorageUnitList
                 unitsArray={filterAvailable}
             />

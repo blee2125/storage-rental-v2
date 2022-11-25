@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Button } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import { connect, useSelector } from "react-redux";
 import { updateLease } from "../../../reducers/LeaseReducer"
 import LeaseForm from "./LeaseForm";
@@ -88,13 +88,15 @@ function LeaseEdit(props) {
     return (
         <div>
             Edit Lease
-            <LeaseForm
-                customers={customers}
-                units={units}
-                leaseObject={leaseObject}
-                updateData={updateData}
-                calcTotal={calcTotal}
-            />
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <LeaseForm
+                    customers={customers}
+                    units={units}
+                    leaseObject={leaseObject}
+                    updateData={updateData}
+                    calcTotal={calcTotal}
+                />
+            </Card>
             <Button onClick={handleSubmit}>Submit</Button>
         </div>
     )

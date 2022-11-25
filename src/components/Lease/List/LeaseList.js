@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Card } from "react-bootstrap";
 import LeaseListItem from "./LeaseListItem";
 
 function LeaseList(props) { 
@@ -15,7 +15,8 @@ function LeaseList(props) {
 
     return (
         <div>
-            <Table>
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+            <Table hover>
                 <thead>
                     <tr>
                         <td><b>unit</b></td>
@@ -30,6 +31,7 @@ function LeaseList(props) {
                     {listLeases}
                 </tbody>
             </Table>
+            </Card>
         </div>
     );
 }

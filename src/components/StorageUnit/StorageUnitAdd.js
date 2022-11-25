@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Button } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import { connect } from "react-redux";
 import { createStorageUnit } from "../../reducers/StorageUnitReducer"
 import StorageUnitForm from "./StorageUnitForms/StorageUnitForm";
@@ -37,10 +37,12 @@ function StorageUnitAdd(props) {
     return (
         <div>
             Create Storage Unit
-            <StorageUnitForm 
-                storageUnitObject={storageUnitObject}
-                updateData={updateData}
-            />
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <StorageUnitForm 
+                    storageUnitObject={storageUnitObject}
+                    updateData={updateData}
+                />
+            </Card>
             <Button onClick={handleSubmit}>Submit</Button>
         </div>
     )

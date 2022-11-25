@@ -15,7 +15,7 @@ function CustomerUnitList(props) {
 
     return (
         <div>
-            <Table>
+            <Table hover>
                 <thead>
                     <tr>
                         <td><b>Name</b></td>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Card } from "react-bootstrap";
 import StorageUnitListItem from "./StorageUnitListItem";
 
 function StorageUnitList(props) { 
@@ -15,7 +15,8 @@ function StorageUnitList(props) {
 
     return (
         <div>
-            <Table>
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+            <Table hover>
                 <thead>
                     <tr>
                         <td><b>Unit Number</b></td>
@@ -30,6 +31,7 @@ function StorageUnitList(props) {
                     {listUnits}
                 </tbody>
             </Table>
+            </Card>
         </div>
     );
 }
