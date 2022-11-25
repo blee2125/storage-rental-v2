@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import { connect, useSelector } from "react-redux";
+import { Card } from "react-bootstrap"
 import { getAllCustomers } from "../../reducers/CustomerReducer"
 import CustomerList from "./List/CustomerList";
 import CustomerSearch from "./List/CustomerSearch";
-import { Card } from "react-bootstrap"
 
 function Customers(props) {
     const customers = useSelector((state) => state.customerState.customerArray)

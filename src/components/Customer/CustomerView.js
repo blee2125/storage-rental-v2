@@ -1,9 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import LeaseList from './List/LeaseList'
+import { useParams, useNavigate } from "react-router-dom";
 import { Button, Card, Table } from "react-bootstrap"
+import LeaseList from './List/LeaseList'
 
 function CustomerView(props) {
     let navigate = useNavigate();
@@ -60,10 +59,10 @@ function CustomerView(props) {
                     </tr>
                 </tbody>
             </Table>
+            <Button onClick={editCustomer}>Edit</Button>
             </Card>
 
-            <Button onClick={editCustomer}>edit</Button>
-            <Button onClick={leaseForm}>lease</Button>
+            <Button onClick={leaseForm}>New Lease</Button>
 
             <LeaseList
                 leases={leases}

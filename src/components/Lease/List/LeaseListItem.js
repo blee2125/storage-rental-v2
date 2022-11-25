@@ -1,5 +1,5 @@
 import React from "react";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DateFunc from '../../../functions/DateFunc'
 
@@ -28,4 +28,4 @@ function LeaseListItem(props) {
     );
 }
 
-export default connect(null, {}) (LeaseListItem);
+export default (LeaseListItem);

@@ -1,10 +1,9 @@
 import React from "react";
 import { connect, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { Button, Card, Table } from "react-bootstrap"
 import LeaseList from "./List/LeaseList";
 import { updateStorageUnit } from "../../reducers/StorageUnitReducer";
-import { Button, Card, Table } from "react-bootstrap"
 
 function StorageUnitView(props) {
     let navigate = useNavigate();
