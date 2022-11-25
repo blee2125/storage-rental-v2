@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { Button, Card } from "react-bootstrap"
 import { connect, useSelector } from "react-redux";
-import { updateCustomer } from "../../reducers/CustomerReducer"
-import CustomerForm from "./CustomerForms/CustomerForm";
 import { useParams, useNavigate } from "react-router-dom";
+import { Button, Card } from "react-bootstrap"
+import { updateCustomer } from "../../../reducers/CustomerReducer"
+import CustomerForm from "./CustomerForm";
 
 function CustomerEdit(props) {
     let navigate = useNavigate();

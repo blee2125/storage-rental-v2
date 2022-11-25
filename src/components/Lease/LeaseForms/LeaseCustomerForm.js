@@ -4,8 +4,8 @@ import { Form } from "react-bootstrap";
 export const LeaseCustomerForm = (props) => {
 
     const listCustomers = props.customers.map(customer => {
-            return <option value={customer._id} key={customer._id}>{customer.name}</option>
-        })
+      return <option value={customer._id} key={customer._id}>{customer.name}</option>
+    })
 
     return (
         <Form.Group className="mb-3" controlId="formGroupCustomer">

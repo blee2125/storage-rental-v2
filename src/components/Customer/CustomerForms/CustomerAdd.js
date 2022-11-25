@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { Button, Card } from "react-bootstrap"
 import { connect } from "react-redux";
-import { createCustomer } from "../../reducers/CustomerReducer"
-import CustomerForm from "./CustomerForms/CustomerForm";
+import { createCustomer } from "../../../reducers/CustomerReducer"
+import CustomerForm from "./CustomerForm";
 
 function CustomerAdd(props) {
     const [customerObject, setCustomerObject] = useState({

@@ -1,24 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+import {useEffect} from "react";
+import { connect } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import NavBar from './components/View/NavBar';
 import Home from './components/View/Home'
 import Customers from './components/Customer/Customers'
-import CustomerAdd from './components/Customer/CustomerAdd'
+import CustomerAdd from './components/Customer/CustomerForms/CustomerAdd'
 import CustomerView from './components/Customer/CustomerView';
-import CustomerEdit from './components/Customer/CustomerEdit';
+import CustomerEdit from './components/Customer/CustomerForms/CustomerEdit';
 import StorageUnits from './components/StorageUnit/StorageUnits'
-import StorageUnitAdd from './components/StorageUnit/StorageUnitAdd';
+import StorageUnitAdd from './components/StorageUnit/StorageUnitForms/StorageUnitAdd';
 import StorageUnitView from './components/StorageUnit/StorageUnitView';
-import StorageUnitEdit from './components/StorageUnit/StorageUnitEdit';
+import StorageUnitEdit from './components/StorageUnit/StorageUnitForms/StorageUnitEdit';
 import Leases from './components/Lease/Leases'
 import LeaseAdd from './components/Lease/LeaseForms/LeaseAdd';
 import LeaseView from './components/Lease/LeaseView';
 import LeaseEdit from './components/Lease/LeaseForms/LeaseEdit';
-
-import {useEffect} from "react";
-import { connect } from "react-redux";
 
 import { getAllLeases } from "./reducers/LeaseReducer"
 import { getAllCustomers } from "./reducers/CustomerReducer"

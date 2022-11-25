@@ -39,44 +39,6 @@ function LeaseEdit(props) {
         .catch((e) => {console.log(e)});
     }
 
-    const daysInMonth = [0,31,28,31,30,31,30,31,31,30,31,30,31]
-
-    const calcTotal = () => {
-        const startSplit = leaseObject.startDate.split('-')
-        const startYear = Number(startSplit[0])
-        const startMonth = Number(startSplit[1])
-        const startDay = Number(startSplit[2])
-        const endSplit = leaseObject.endDate.split('-')
-        const endYear = Number(endSplit[0])
-        const endMonth = Number(endSplit[1])
-        const endDay = Number(endSplit[2])
-        let m = 0
-        let d = 0
-        const yearDiff = (endYear - startYear) *12
-        const monthDiff = endMonth - startMonth
-        const dayDiff = endDay - startDay
-
-        m = yearDiff + monthDiff
-        if (dayDiff < 0) {
-            if (startYear%4 === 0) {
-                m = m - 1
-                if (startMonth === 2) {
-                    d = daysInMonth[startMonth] + dayDiff + 1
-                } else {
-                    d = daysInMonth[startMonth] + dayDiff
-                }
-            } else {
-                m = m - 1
-                d = daysInMonth[startMonth] + dayDiff
-            }
-        } else {
-            d = dayDiff
-        }
-        let total = 0
-        total = (m * leaseObject.rate) + (d * leaseObject.rate / 30)
-        leaseObject.totalCost = Number(total).toFixed(2)
-    }
-
     useEffect(() => {
         setLeaseObject(leaseObject => ({
             ...leaseObject,
@@ -94,7 +56,6 @@ function LeaseEdit(props) {
                     units={units}
                     leaseObject={leaseObject}
                     updateData={updateData}
-                    calcTotal={calcTotal}
                 />
             </Card>
             <Button onClick={handleSubmit}>Submit</Button>
