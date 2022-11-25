@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import LeaseList from './List/LeaseList'
+import { Button, Card, Table } from "react-bootstrap"
 
 function CustomerView(props) {
     let navigate = useNavigate();
@@ -22,7 +23,8 @@ function CustomerView(props) {
 
     return (
         <div>
-            <table>
+            <Card bg='light' border="secondary" style={{ width: '350px', padding: '25px', margin: "25px"}}>
+            <Table hover>
                 <tbody>
                     <tr>
                         <td>
@@ -57,13 +59,16 @@ function CustomerView(props) {
                         </td>
                     </tr>
                 </tbody>
-            </table>
-            <button onClick={editCustomer}>edit</button>
-            <button onClick={leaseForm}>lease</button>
+            </Table>
+            </Card>
+
+            <Button onClick={editCustomer}>edit</Button>
+            <Button onClick={leaseForm}>lease</Button>
 
             <LeaseList
                 leases={leases}
             />
+            
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Table, Card, Button } from "react-bootstrap";
 
 function LeaseView(props) {
     let navigate = useNavigate();
@@ -27,7 +28,8 @@ function LeaseView(props) {
 
     return (
         <div>
-            <table>
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+            <Table hover>
                 <tbody>
                 <tr onClick={viewUnit}>
                     <td>unit</td>
@@ -50,9 +52,9 @@ function LeaseView(props) {
                     <td>{lease.endDate}</td>
                 </tr>
                 </tbody>
-            </table>
-            
-            <button onClick={editLease}>edit</button>
+            </Table>
+            </Card>
+            <Button onClick={editLease}>edit</Button>
         </div>
     )
 }

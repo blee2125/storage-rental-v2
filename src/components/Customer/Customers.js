@@ -3,6 +3,7 @@ import { connect, useSelector } from "react-redux";
 import { getAllCustomers } from "../../reducers/CustomerReducer"
 import CustomerList from "./List/CustomerList";
 import CustomerSearch from "./List/CustomerSearch";
+import { Card } from "react-bootstrap"
 
 function Customers(props) {
     const customers = useSelector((state) => state.customerState.customerArray)
@@ -30,13 +31,17 @@ function Customers(props) {
     return (
         <div>
             Customers
-            <CustomerSearch
-                search={search}
-                setSearch={setSearch}
-            />
-            <CustomerList
-                customerArray={filterCustomers}
-            />
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <CustomerSearch
+                    search={search}
+                    setSearch={setSearch}
+                />
+            </Card>
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <CustomerList
+                    customerArray={filterCustomers}
+                />
+            </Card>
         </div>
     )
 }

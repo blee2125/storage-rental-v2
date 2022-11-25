@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Button } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import { connect, useSelector } from "react-redux";
 import { updateCustomer } from "../../reducers/CustomerReducer"
 import CustomerForm from "./CustomerForms/CustomerForm";
@@ -46,10 +46,12 @@ function CustomerEdit(props) {
     return (
         <div>
             Edit Customer
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
             <CustomerForm 
                 customerObject={customerObject}
                 updateData={updateData}
             />
+            </Card>
             <Button onClick={handleSubmit}>Submit</Button>
         </div>
     )
