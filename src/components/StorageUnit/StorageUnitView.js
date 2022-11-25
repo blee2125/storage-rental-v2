@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { Button, Card, Table } from "react-bootstrap"
+import { Button, ButtonGroup, Card, Table } from "react-bootstrap"
 import LeaseList from "./List/LeaseList";
 import { updateStorageUnit } from "../../reducers/StorageUnitReducer";
 
@@ -33,6 +33,8 @@ function StorageUnitView(props) {
     return (
         <div>
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+            {storageUnit ? 
+            <div>
             <Table hover>
                 <tbody>
                 <tr>
@@ -61,14 +63,20 @@ function StorageUnitView(props) {
                 </tr>
                 </tbody>
             </Table>
+            <ButtonGroup>
+                <Button onClick={updateAvailable}>Set Available</Button>
+                <Button onClick={updateUnavailable}>Set Unavailable</Button>
+                <Button onClick={editStorageUnit}>Edit Unit</Button>
+            </ButtonGroup>
+            </div>
+            : ''}
+            
             </Card>
-            <Button onClick={updateAvailable}>Set Available</Button>
-            <Button onClick={updateUnavailable}>Set Unavailable</Button>
-            <Button onClick={editStorageUnit}>edit</Button>
+            
 
-            <LeaseList
+            {storageUnit ? <LeaseList
                 leases={leases}
-            />
+            /> : ''}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { Table, Card, Button } from "react-bootstrap";
@@ -7,8 +7,11 @@ function LeaseView(props) {
     let navigate = useNavigate();
     const routeParams = useParams();
     const lease = useSelector((state) => state.leaseState.leaseArray.filter(l => l._id === routeParams.id)[0])
-    const customer = useSelector((state) => state.customerState.customerArray.filter(c => c._id === lease.customerId)[0])
-    const unit = useSelector((state) => state.storageUnitState.storageUnitArray.filter(u => u._id === lease.unitId)[0])
+    const customers = useSelector((state) => state.customerState.customerArray)
+    const units = useSelector((state) => state.storageUnitState.storageUnitArray)
+
+    const [unit, setUnit] = useState()
+    const [customer, setCustomer] = useState()
 
     function editLease() {
         let path = `../edit/${lease._id}`
@@ -16,14 +19,26 @@ function LeaseView(props) {
     }
 
     function viewCustomer() {
-        let path = `../../customers/view/${customer._id}`
+        let path = `../../customers/view/${lease.customerId}`
         navigate(path)
     }
 
     function viewUnit() {
-        let path = `../../storage-units/view/${unit._id}`
+        let path = `../../storage-units/view/${lease.unitId}`
         navigate(path)
     }
+
+    function loadData() {
+        const customerData = customers.filter(c=> c._id===lease.customerId)[0]
+        const unitData = units.filter(u=> u._id===lease.unitId)[0]
+        setUnit(unitData)
+        setCustomer(customerData)
+    }
+
+    useEffect(() => {
+        loadData()
+        // eslint-disable-next-line
+    }, [lease])
 
     return (
         <div>
@@ -32,23 +47,23 @@ function LeaseView(props) {
                 <tbody>
                 <tr onClick={viewUnit}>
                     <td>unit</td>
-                    <td>{unit.unitNumber}</td>
+                    <td>{unit ? unit.unitNumber : ''}</td>
                 </tr>
                 <tr onClick={viewCustomer}>
                     <td>customer</td>
-                    <td>{customer.name}</td>
+                    <td>{customer ? customer.name : ''}</td>
                 </tr>
                 <tr>
                     <td>rate</td>
-                    <td>{lease.rate}</td>
+                    <td>{lease ? lease.rate : ''}</td>
                 </tr>
                 <tr>
                     <td>start date</td>
-                    <td>{lease.startDate}</td>
+                    <td>{lease ? lease.startDate : ''}</td>
                 </tr>
                 <tr>
                     <td>end date</td>
-                    <td>{lease.endDate}</td>
+                    <td>{lease ? lease.endDate : ''}</td>
                 </tr>
                 </tbody>
             </Table>

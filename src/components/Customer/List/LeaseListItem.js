@@ -19,7 +19,7 @@ function LeaseListItem(props) {
     return (
         <tr>
             <td onClick={viewLease}>{props.lease._id}</td>
-            <td onClick={viewStorageUnit}>{unit.unitNumber}</td>
+            <td onClick={viewStorageUnit}>{unit ? unit.unitNumber : ''}</td>
         </tr>
     );
 }
