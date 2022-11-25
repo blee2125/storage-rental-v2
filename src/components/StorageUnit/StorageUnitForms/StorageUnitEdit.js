@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Button, Card } from "react-bootstrap"
-import { connect } from "react-redux";
-import { createStorageUnit } from "../../reducers/StorageUnitReducer"
-import StorageUnitForm from "./StorageUnitForms/StorageUnitForm";
+import { connect, useSelector } from "react-redux";
+import { updateStorageUnit } from "../../../reducers/StorageUnitReducer"
+import StorageUnitForm from "./StorageUnitForm";
+import { useParams, useNavigate } from "react-router-dom";
 
-function StorageUnitAdd(props) {
+function StorageUnitEdit(props) {
+    let navigate = useNavigate();
+    const routeParams = useParams();
+    const storageUnit = useSelector((state) => state.storageUnitState.storageUnitArray.filter(u => u._id === routeParams.id)[0])
     const [storageUnitObject, setStorageUnitObject] = useState({
         unitNumber: '',
         type: '',
@@ -25,18 +29,26 @@ function StorageUnitAdd(props) {
 
     const handleSubmit = () => {
         if (storageUnitObject.unitNumber !== '') {
-            props.createStorageUnit(storageUnitObject)
+            props.updateStorageUnit({id: storageUnit._id, data: storageUnitObject})
             .unwrap()
             .then((data) => {
-                console.log(data)
+                navigate(`/storage-units/view/${data._id}`)
             })
             .catch((e) => {console.log(e)});
         }
     }
 
+    useEffect(() => {
+        setStorageUnitObject(storageUnitObject => ({
+            ...storageUnitObject,
+            ...storageUnit
+        }))
+        // eslint-disable-next-line
+    }, [])
+
     return (
         <div>
-            Create Storage Unit
+            Edit Storage Unit
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
                 <StorageUnitForm 
                     storageUnitObject={storageUnitObject}
@@ -48,4 +60,4 @@ function StorageUnitAdd(props) {
     )
 }
 
-export default connect(null, { createStorageUnit }) (StorageUnitAdd)
+export default connect(null, { updateStorageUnit }) (StorageUnitEdit)
