@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 export const LeaseStorageUnitForm = (props) => {
   const [locations, setLocations] = useState([]);
@@ -7,6 +8,7 @@ export const LeaseStorageUnitForm = (props) => {
   const [sizeArray, setSizeArray] = useState([]);
   const [size, setSize] = useState('');
   const [units] = useState(props.units)
+  const leases = useSelector((state) => state.leaseState.leaseArray)
 
   const uniqueLocations = () => {
     const locFilter = []
@@ -43,8 +45,31 @@ export const LeaseStorageUnitForm = (props) => {
   const listStorageUnits = units.filter(unit => unit.location === location)
     .filter(unit => unit.size === size)
     .map(unit => {
-      if (unit.available === false) {
-        return <option value={unit._id} key={unit._id} >{unit.unitNumber} - {unit.available ? 'available' : 'not available'}</option>
+      let unitleases = []
+      unitleases = leases.filter(l => {
+        if (l.unitId === unit._id){
+          return l
+        } else {
+          return undefined
+        }
+      })
+      let leasedates = []
+      leasedates = unitleases.filter(d => {
+        const startD = new Date(d.startDate)
+        const endD = new Date(d.endDate)
+        const startLease = new Date(props.leaseObject.startDate)
+        const endLease = new Date(props.leaseObject.endDate)
+        if (startLease >= startD & startLease <= endD) {
+          return d
+        } else if (endLease >= startD & endLease <= endD) {
+          return d
+        } else {
+          return undefined
+        }
+      })
+
+      if (leasedates.length > 0) {
+        return <option value={unit._id} key={unit._id} disabled>{unit.unitNumber} - {unit.available ? 'available' : 'not available'}</option>
       } else {
         return <option value={unit._id} key={unit._id}>{unit.unitNumber} - {unit.available ? 'available' : 'not available'}</option>
       }
