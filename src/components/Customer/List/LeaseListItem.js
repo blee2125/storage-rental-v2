@@ -16,10 +16,19 @@ function LeaseListItem(props) {
         navigate(path)
     }
 
+    const calcBalance = () => {
+        if (props.lease.payments > 0) {
+            return Number(props.lease.totalCost - props.lease.payments).toFixed(2)
+        } else {
+            return Number(props.lease.totalCost).toFixed(2)
+        }
+    }
+
     return (
         <tr>
             <td onClick={viewLease}>{props.lease._id}</td>
             <td onClick={viewStorageUnit}>{unit ? unit.unitNumber : ''}</td>
+            <td >{props.lease.totalCost ? calcBalance() : ''}</td>
         </tr>
     );
 }

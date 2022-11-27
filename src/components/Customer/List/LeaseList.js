@@ -21,6 +21,7 @@ function LeaseList(props) {
                     <tr>
                         <td><b>lease id</b></td>
                         <td><b>Unit Number</b></td>
+                        <td><b>Balance</b></td>
                     </tr>
                 </thead>
                 <tbody>
