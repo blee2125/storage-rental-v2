@@ -23,20 +23,6 @@ export const LeaseForm = (props) => {
         customerId={props.leaseObject.customerId}
         updateData={props.updateData}
       />
-      <LeaseStorageUnitForm
-        units={props.units}
-        unitId={props.leaseObject.unitId}
-        updateData={props.updateData}
-      />
-      <Form.Group className="mb-3" controlId="formGroupRate">
-        <Form.Label>Rate</Form.Label>
-        <Form.Control 
-          type="number" 
-          placeholder="Rate" 
-          value={props.leaseObject.rate}
-          onChange={e => props.updateData('rate', e.target.value)}
-        />
-      </Form.Group>
       <Form.Group className="mb-3" controlId="formGroupStart">
         <Form.Label>Start Date</Form.Label>
         <Form.Control 
@@ -55,6 +41,24 @@ export const LeaseForm = (props) => {
           min={props.leaseObject.startDate}
           value={props.leaseObject.endDate}
           onChange={e => props.updateData('endDate', e.target.value)}
+        />
+      </Form.Group>
+      {(props.leaseObject.startDate === '' || props.leaseObject.endDate === '') ?
+        ''
+      :
+      <LeaseStorageUnitForm
+        units={props.units}
+        unitId={props.leaseObject.unitId}
+        updateData={props.updateData}
+        leaseObject={props.leaseObject}
+      />}
+      <Form.Group className="mb-3" controlId="formGroupRate">
+        <Form.Label>Rate</Form.Label>
+        <Form.Control 
+          type="number" 
+          placeholder="Rate" 
+          value={props.leaseObject.rate}
+          onChange={e => props.updateData('rate', e.target.value)}
         />
       </Form.Group>
       
