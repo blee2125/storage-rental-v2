@@ -28,6 +28,7 @@ function NavBar() {
             </NavDropdown>
             <NavDropdown title="Leases" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/leases">Leases</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/payments">Payments</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item as={Link} to="/leases/add">
                 Add Lease
