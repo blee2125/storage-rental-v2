@@ -1,6 +1,11 @@
 const daysInMonth = [0,31,28,31,30,31,30,31,31,30,31,30,31]
 
 class DateFunc {
+    // changes 'YYYY-MM-DD' to 'MM-DD-YYYY'
+    monthDayYear = (date) => {
+        const dateSplit = date.split('-')
+        return `${dateSplit[1]}-${dateSplit[2]}-${dateSplit[0]}`
+    }
     
     // returns total days between two dates
     leaseLengthDays = (startDate, endDate) => {
