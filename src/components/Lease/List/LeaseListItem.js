@@ -17,8 +17,8 @@ function LeaseListItem(props) {
 
     return (
         <tr onClick={()=> viewLease()}>
-            <td>{unit.unitNumber}</td>
-            <td>{customer.name}</td>
+            <td>{unit ? unit.unitNumber : ''}</td>
+            <td>{customer ? customer.name : ''}</td>
             <td>{props.lease.rate}</td>
             <td>{props.lease.totalCost}</td>
             <td>{props.lease.startDate}</td>
