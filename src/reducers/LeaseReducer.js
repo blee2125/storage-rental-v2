@@ -52,7 +52,7 @@ export const leaseSlice = createSlice({
     builder.addCase(updateLease.fulfilled, (state, action) => {
       state.leaseArray = state.leaseArray.map(lease => {
         if (lease._id === action.payload._id) {
-          return lease = action.payload
+          return action.payload
         }
         return lease
       })
