@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { Table, Card, Button } from "react-bootstrap";
+import PaymentForm from "./LeaseForms/PaymentForm";
 
 function LeaseView(props) {
     let navigate = useNavigate();
@@ -43,6 +44,7 @@ function LeaseView(props) {
     return (
         <div>
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <h2>Lease</h2>
             <Table hover>
                 <tbody>
                 <tr onClick={viewUnit}>
@@ -65,10 +67,15 @@ function LeaseView(props) {
                     <td>end date</td>
                     <td>{lease ? lease.endDate : ''}</td>
                 </tr>
+                <tr>
+                    <td>balance</td>
+                    <td>{lease ? Number(lease.totalCost - lease.payments).toFixed(2) : ''}</td>
+                </tr>
                 </tbody>
             </Table>
             </Card>
             <Button onClick={editLease}>edit</Button>
+            <PaymentForm lease={lease}/>
         </div>
     )
 }
