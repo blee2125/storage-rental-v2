@@ -9,10 +9,13 @@ function PaymentForm(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const today = new Date();
+    const defaultDate = today.toLocaleDateString('en-CA')
     const [paymentObject, setPaymentObject] = useState({
         leaseId: '',
         customerId: '',
-        payment: ''
+        payment: '',
+        date: defaultDate
     });
 
     const updateData = (target, value) => {
@@ -56,12 +59,20 @@ function PaymentForm(props) {
             <Modal.Body>
                 <Form>
                 <Form.Group className="mb-3" controlId="formGroupPayment">
-                        <Form.Control 
-                            type="number" 
-                            placeholder="payment" 
-                            onChange={e => updateData('payment', e.target.value)}
-                        />
-                    </Form.Group>
+                    <Form.Control 
+                        type="number" 
+                        placeholder="payment" 
+                        onChange={e => updateData('payment', e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupDate">
+                    <Form.Control 
+                        type="date" 
+                        placeholder="payment"
+                        defaultValue={defaultDate}
+                        onChange={e => updateData('date', e.target.value)}
+                    />
+                </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
