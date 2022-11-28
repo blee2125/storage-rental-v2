@@ -31,7 +31,7 @@ function PaymentForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.updateLease({id: props.lease._id, data: leaseObject})
+        props.updateLease({id: leaseObject._id, data: leaseObject})
             .unwrap()
             .then(() => {
                 handleClose()
@@ -45,7 +45,7 @@ function PaymentForm(props) {
             ...props.lease
         }))
     // eslint-disable-next-line
-    }, [])
+    }, [props])
 
     return (
         <>
