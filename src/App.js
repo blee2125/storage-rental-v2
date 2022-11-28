@@ -23,6 +23,7 @@ import LeaseEdit from './components/Lease/LeaseForms/LeaseEdit';
 import { getAllLeases } from "./reducers/LeaseReducer"
 import { getAllCustomers } from "./reducers/CustomerReducer"
 import { getAllStorageUnits } from "./reducers/StorageUnitReducer"
+import { getAllPayments } from "./reducers/PaymentReducer"
 
 function App(props) {
 
@@ -30,6 +31,7 @@ function App(props) {
     props.getAllLeases()
     props.getAllCustomers()
     props.getAllStorageUnits()
+    props.getAllPayments()
     // eslint-disable-next-line
   }, [])
 
@@ -61,4 +63,4 @@ function App(props) {
   );
 }
 
-export default connect(null, { getAllLeases, getAllCustomers, getAllStorageUnits }) (App);
+export default connect(null, { getAllLeases, getAllCustomers, getAllStorageUnits, getAllPayments }) (App);
