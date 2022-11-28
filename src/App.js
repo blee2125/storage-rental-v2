@@ -19,6 +19,7 @@ import Leases from './components/Lease/Leases'
 import LeaseAdd from './components/Lease/LeaseForms/LeaseAdd';
 import LeaseView from './components/Lease/LeaseView';
 import LeaseEdit from './components/Lease/LeaseForms/LeaseEdit';
+import Payments from './components/Payment/Payments';
 
 import { getAllLeases } from "./reducers/LeaseReducer"
 import { getAllCustomers } from "./reducers/CustomerReducer"
@@ -57,7 +58,10 @@ function App(props) {
               <Route path="add" element={<LeaseAdd/>}/>
               <Route path="view/:id" element={<LeaseView/>}/>
               <Route path="edit/:id" element={<LeaseEdit/>}/>
-            </Route>            
+            </Route>
+            <Route path='payments'>
+              <Route path="" element={<Payments/>}/>
+            </Route>          
           </Routes>
     </div>
   );
