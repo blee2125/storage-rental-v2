@@ -3,27 +3,23 @@ import { connect } from "react-redux";
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { updateLease } from '../../../reducers/LeaseReducer'
+import { createPayment } from '../../reducers/PaymentReducer'
 
 function PaymentForm(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [leaseObject, setLeaseObject] = useState({
-        unitId: '',
+    const [paymentObject, setPaymentObject] = useState({
+        leaseId: '',
         customerId: '',
-        rate: '',
-        totalCost: '',
-        startDate: '',
-        endDate: '',
-        payments: ''
+        payment: ''
     });
 
     const updateData = (target, value) => {
         let updatedValue = {};
         updatedValue = {[target]: value};
-        setLeaseObject(leaseObject => ({
-            ...leaseObject,
+        setPaymentObject(paymentObject => ({
+            ...paymentObject,
             ...updatedValue
         }));
     };
@@ -31,7 +27,7 @@ function PaymentForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.updateLease({id: leaseObject._id, data: leaseObject})
+        props.createPayment(paymentObject)
             .unwrap()
             .then(() => {
                 handleClose()
@@ -40,10 +36,10 @@ function PaymentForm(props) {
     }
 
     useEffect(() => {
-        setLeaseObject(leaseObject => ({
-            ...leaseObject,
-            ...props.lease
-        }))
+        if (props.lease) {
+            updateData('leaseId', props.lease._id)
+            updateData('customerId', props.lease.customerId)
+        }
     // eslint-disable-next-line
     }, [props])
 
@@ -63,7 +59,7 @@ function PaymentForm(props) {
                         <Form.Control 
                             type="number" 
                             placeholder="payment" 
-                            onChange={e => updateData('payments', e.target.value)}
+                            onChange={e => updateData('payment', e.target.value)}
                         />
                     </Form.Group>
                 </Form>
@@ -81,4 +77,4 @@ function PaymentForm(props) {
     );
 }
 
-export default connect(null, {updateLease}) (PaymentForm)
+export default connect(null, {createPayment}) (PaymentForm)
