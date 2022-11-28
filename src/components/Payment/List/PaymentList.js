@@ -19,6 +19,7 @@ function PaymentList(props) {
             <Table hover>
                 <thead>
                     <tr>
+                        <td><b>Date</b></td>
                         <td><b>lease id</b></td>
                         <td><b>customer</b></td>
                         <td><b>payment</b></td>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import DateFunc from "../../../functions/DateFunc";
 
 function PaymentListItem(props) {
     const customer = useSelector((state) => state.customerState.customerArray.filter(c => c._id === props.payment.customerId)[0])
@@ -14,6 +15,7 @@ function PaymentListItem(props) {
 
     return (
         <tr >
+            <td>{props.payment.date ? DateFunc.monthDayYear(props.payment.date) : ''}</td>
             <td onClick={()=> viewLease()}>{lease ? lease._id : ''}</td>
             <td>{customer ? customer.name : ''}</td>
             <td>{props.payment.payment}</td>
