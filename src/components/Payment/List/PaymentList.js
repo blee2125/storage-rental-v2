@@ -16,6 +16,7 @@ function PaymentList(props) {
     return (
         <div>
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <h2>Payments</h2>
             <Table hover>
                 <thead>
                     <tr>
