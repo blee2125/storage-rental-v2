@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { Table, Card, Button } from "react-bootstrap";
 import PaymentForm from "../Payment/PaymentForm";
+import PaymentList from "../Payment/List/PaymentList";
 
 function LeaseView(props) {
     let navigate = useNavigate();
@@ -10,9 +11,12 @@ function LeaseView(props) {
     const lease = useSelector((state) => state.leaseState.leaseArray.filter(l => l._id === routeParams.id)[0])
     const customers = useSelector((state) => state.customerState.customerArray)
     const units = useSelector((state) => state.storageUnitState.storageUnitArray)
+    const payments = useSelector((state) => state.paymentState.paymentArray)
 
     const [unit, setUnit] = useState()
+    const [paymentArray, setPaymentArray] = useState([])
     const [customer, setCustomer] = useState()
+    const [balance, setBalance] = useState()
 
     function editLease() {
         let path = `../edit/${lease._id}`
@@ -32,8 +36,21 @@ function LeaseView(props) {
     function loadData() {
         const customerData = customers.filter(c=> c._id===lease.customerId)[0]
         const unitData = units.filter(u=> u._id===lease.unitId)[0]
+        const paymentData = payments.filter(p=> p.leaseId ===lease._id)
         setUnit(unitData)
+        setPaymentArray(paymentData)
         setCustomer(customerData)
+        calcBalance()
+    }
+
+    function calcBalance() {
+        if (lease) {
+            let bal = lease.totalCost
+            if (lease.payments > 0) {
+                bal = bal - lease.payments
+            }
+            setBalance(bal)
+        }
     }
 
     useEffect(() => {
@@ -68,14 +85,22 @@ function LeaseView(props) {
                     <td>{lease ? lease.endDate : ''}</td>
                 </tr>
                 <tr>
+                    <td>total cost</td>
+                    <td>{lease ? Number(lease.totalCost).toFixed(2) : ''}</td>
+                </tr>
+                <tr>
                     <td>balance</td>
-                    <td>{lease ? Number(lease.totalCost - lease.payments).toFixed(2) : ''}</td>
+                    <td>{balance ? Number(balance).toFixed(2) : ''}</td>
                 </tr>
                 </tbody>
             </Table>
             </Card>
             <Button onClick={editLease}>edit</Button>
             <PaymentForm lease={lease}/>
+            {paymentArray.length > 0 ?
+            <PaymentList
+                paymentArray={paymentArray}
+            /> : ''}
         </div>
     )
 }

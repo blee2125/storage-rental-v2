@@ -18,7 +18,7 @@ function PaymentListItem(props) {
             <td>{props.payment.date ? DateFunc.monthDayYear(props.payment.date) : ''}</td>
             <td onClick={()=> viewLease()}>{lease ? lease._id : ''}</td>
             <td>{customer ? customer.name : ''}</td>
-            <td>{props.payment.payment}</td>
+            <td>{Number(props.payment.payment).toFixed(2)}</td>
         </tr>
     );
 }
