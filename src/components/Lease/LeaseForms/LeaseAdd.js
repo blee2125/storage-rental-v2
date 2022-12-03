@@ -52,8 +52,8 @@ function LeaseAdd(props) {
 
     return (
         <div>
-            Create Lease
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <h2>Create Lease</h2>
                 <LeaseForm
                     customers={customers}
                     units={units}

@@ -13,7 +13,7 @@ export const LeaseForm = (props) => {
   useEffect(() => {
     calcTotal()
     // eslint-disable-next-line
-}, [props.leaseObject.rate, props.leaseObject.startDate, props.leaseObject.endDate])
+  }, [props.leaseObject.rate, props.leaseObject.startDate, props.leaseObject.endDate])
 
   return (
     <div>
@@ -63,7 +63,7 @@ export const LeaseForm = (props) => {
       </Form.Group>
       
     </Form>
-    Total Cost $ {props.leaseObject.totalCost > 0 ? props.leaseObject.totalCost : 0}
+    Total Cost ${props.leaseObject.totalCost > 0 ? Number(props.leaseObject.totalCost).toFixed(2) : 0}
     </div>
   );
 }

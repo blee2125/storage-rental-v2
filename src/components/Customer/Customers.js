@@ -30,8 +30,8 @@ function Customers(props) {
 
     return (
         <div>
-            Customers
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <h2>Customers</h2>
                 <CustomerSearch
                     search={search}
                     setSearch={setSearch}

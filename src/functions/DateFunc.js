@@ -48,7 +48,7 @@ class DateFunc {
             d = dayDiff
         }
 
-        return `${m}months - ${d}days`
+        return `${m} Months - ${d} Days`
     }
 
     // returns past, current, or future in comparison to today's date

@@ -94,7 +94,6 @@ export const LeaseStorageUnitForm = (props) => {
     if (props.unitId !== '') {
       setEditUnit()
     }
-    
     // eslint-disable-next-line
   }, [props])
 

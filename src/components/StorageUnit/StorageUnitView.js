@@ -38,27 +38,27 @@ function StorageUnitView(props) {
             <Table hover>
                 <tbody>
                 <tr>
-                    <td>Unit Number</td>
+                    <td><b>Unit Number</b></td>
                     <td>{storageUnit.unitNumber}</td>
                 </tr>
                 <tr>
-                    <td>Type</td>
+                    <td><b>Type</b></td>
                     <td>{storageUnit.type}</td>
                 </tr>
                 <tr>
-                    <td>Size</td>
+                    <td><b>Size</b></td>
                     <td>{storageUnit.size}</td>
                 </tr>
                 <tr>
-                    <td>Location</td>
+                    <td><b>Location</b></td>
                     <td>{storageUnit.location}</td>
                 </tr>
                 <tr>
-                    <td>Standard Rate</td>
+                    <td><b>Standard Rate</b></td>
                     <td>{storageUnit.standardRate}</td>
                 </tr>
                 <tr>
-                    <td>Available</td>
+                    <td><b>Available</b></td>
                     <td>{storageUnit.available ? 'Yes' : 'No'}</td>
                 </tr>
                 </tbody>
@@ -70,10 +70,8 @@ function StorageUnitView(props) {
             </ButtonGroup>
             </div>
             : ''}
-            
             </Card>
             
-
             {storageUnit ? <LeaseList
                 leases={leases}
             /> : ''}

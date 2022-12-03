@@ -19,7 +19,9 @@ function LeaseList(props) {
             <Table hover>
                 <thead>
                     <tr>
-                        <td><b>lease id</b></td>
+                        <td><b>Length</b></td>
+                        <td><b>Dates</b></td>
+                        <td><b>Lease Id</b></td>
                         <td><b>Unit Number</b></td>
                         <td><b>Balance</b></td>
                     </tr>

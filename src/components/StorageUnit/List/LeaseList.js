@@ -19,8 +19,9 @@ function LeaseList(props) {
             <Table hover>
                 <thead>
                     <tr>
-                    <td><b>Lease Dates</b></td>
-                    <td><b>Leases</b></td>
+                        <td><b>Length</b></td>
+                        <td><b>Lease Dates</b></td>
+                        <td><b>Time</b></td>
                         <td><b>Customer</b></td>
                     </tr>
                 </thead>

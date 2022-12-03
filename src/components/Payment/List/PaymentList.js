@@ -21,9 +21,9 @@ function PaymentList(props) {
                 <thead>
                     <tr>
                         <td><b>Date</b></td>
-                        <td><b>lease id</b></td>
-                        <td><b>customer</b></td>
-                        <td><b>payment</b></td>
+                        <td><b>Lease Id</b></td>
+                        <td><b>Customer</b></td>
+                        <td><b>Amount</b></td>
                     </tr>
                 </thead>
                 <tbody>

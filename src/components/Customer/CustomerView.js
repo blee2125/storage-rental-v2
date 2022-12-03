@@ -35,7 +35,7 @@ function CustomerView(props) {
                 <tbody>
                     <tr>
                         <td>
-                            Name
+                            <b>Name</b>
                         </td>
                         <td>
                             {customer ? customer.name : ''}
@@ -43,7 +43,7 @@ function CustomerView(props) {
                     </tr>
                     <tr>
                         <td>
-                            Email
+                            <b>Email</b>
                         </td>
                         <td>
                             {customer ? customer.email : ''}
@@ -51,7 +51,7 @@ function CustomerView(props) {
                     </tr>
                     <tr>
                         <td>
-                            Phone
+                            <b>Phone</b>
                         </td>
                         <td>
                             {customer ? customer.phone : ''}
@@ -59,7 +59,7 @@ function CustomerView(props) {
                     </tr>
                     <tr>
                         <td>
-                            # of Leases
+                            <b># of Leases</b>
                         </td>
                         <td>
                             {leases ? leases.length : ''}
@@ -67,7 +67,7 @@ function CustomerView(props) {
                     </tr>
                     <tr>
                         <td>
-                            Balance
+                            <b>Balance</b>
                         </td>
                         <td>
                             {leases ? calcBalance() : ''}

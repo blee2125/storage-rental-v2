@@ -1,10 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import DateFunc from "../../../functions/DateFunc";
 
 function LeaseListItem(props) {
     let navigate = useNavigate();
     const unit = useSelector((state) => state.storageUnitState.storageUnitArray.filter(u => u._id === props.lease.unitId)[0])
+
+    const leaseLength = DateFunc.leaseLength(props.lease.startDate, props.lease.endDate)
 
     const viewStorageUnit = () => {
         let path = `../../storage-units/view/${unit._id}`
@@ -26,6 +29,8 @@ function LeaseListItem(props) {
 
     return (
         <tr>
+            <td>{leaseLength}</td>
+            <td>{DateFunc.monthDayYear(props.lease.startDate)} - {DateFunc.monthDayYear(props.lease.endDate)}</td>
             <td onClick={viewLease}>{props.lease._id}</td>
             <td onClick={viewStorageUnit}>{unit ? unit.unitNumber : ''}</td>
             <td >{props.lease.totalCost ? calcBalance() : ''}</td>

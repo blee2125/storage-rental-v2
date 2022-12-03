@@ -13,7 +13,6 @@ function Leases(props) {
 
     return (
         <div>
-            Payments
             <PaymentList
                 paymentArray={paymentArray}
             />

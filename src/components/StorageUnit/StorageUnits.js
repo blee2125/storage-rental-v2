@@ -49,8 +49,8 @@ function StorageUnits(props) {
 
     return (
         <div>
-            storage unit
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <h2>Storage Units</h2>
                 <StorageUnitSearch
                     search={search}
                     setSearch={setSearch}

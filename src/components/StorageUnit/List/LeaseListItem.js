@@ -8,6 +8,7 @@ function LeaseListItem(props) {
     const customer = useSelector((state) => state.customerState.customerArray.filter(c => c._id === props.lease.customerId)[0])
 
     const cronLease = DateFunc.returnPastCurrentFuture(props.lease.startDate, props.lease.endDate)
+    const leaseLength = DateFunc.leaseLength(props.lease.startDate, props.lease.endDate)
 
     const viewLease = () => {
         let path = `../../leases/view/${props.lease._id}`
@@ -20,7 +21,8 @@ function LeaseListItem(props) {
     }
 
     return (
-        <tr >
+        <tr>
+            <td>{leaseLength}</td>
             <td onClick={viewLease}>{props.lease.startDate} - {props.lease.endDate}</td>
             <td>{cronLease}</td>
             <td onClick={viewCustomer}>{customer ? customer.name :""}</td>
