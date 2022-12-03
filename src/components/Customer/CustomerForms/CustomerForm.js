@@ -18,8 +18,9 @@ export const CustomerForm = (props) => {
       <Form.Group className="mb-3" controlId="formGroupEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control 
-          type="text" 
-          placeholder="Email" 
+          type="email" 
+          placeholder="Email"
+          required
           value={props.customerObject.email}
           onChange={e => props.updateData('email', e.target.value)}
         />
@@ -29,6 +30,7 @@ export const CustomerForm = (props) => {
         <PhoneInput
           disableCountryCode={true}
           specialLabel=''
+          placeholder="(123) 456-7890"
           value={props.customerObject.phone}
           onChange={phone => props.updateData('phone', phone)}
         />

@@ -15,6 +15,10 @@ function CustomerEdit(props) {
         phone: ''
     });
 
+    function isValidEmail() {
+        return /\S+@\S+\.\S+/.test(customerObject.email);
+    }
+
     const updateData = (target, value) => {
         let updatedValue = {};
             updatedValue = {[target]: value};
@@ -26,12 +30,16 @@ function CustomerEdit(props) {
 
     const handleSubmit = () => {
         if (customerObject.customerName !== '') {
-            props.updateCustomer({id: customer._id, data: customerObject})
-            .unwrap()
-            .then((data) => {
-                navigate(`/customers/view/${data._id}`)
-            })
-            .catch((e) => {console.log(e)});
+            if(isValidEmail()){
+                props.updateCustomer({id: customer._id, data: customerObject})
+                .unwrap()
+                .then((data) => {
+                    navigate(`/customers/view/${data._id}`)
+                })
+                .catch((e) => {console.log(e)});
+            } else {
+                console.log('email invalid')
+            }
         }
     }
 

@@ -11,6 +11,10 @@ function CustomerAdd(props) {
         phone: ''
     });
 
+    function isValidEmail() {
+        return /\S+@\S+\.\S+/.test(customerObject.email);
+    }
+
     const updateData = (target, value) => {
         let updatedValue = {};
             updatedValue = {[target]: value};
@@ -22,12 +26,16 @@ function CustomerAdd(props) {
 
     const handleSubmit = () => {
         if (customerObject.customerName !== '') {
-            props.createCustomer(customerObject)
-            .unwrap()
-            .then((data) => {
-                console.log(data)
-            })
-            .catch((e) => {console.log(e)});
+            if(isValidEmail()){
+                props.createCustomer(customerObject)
+                .unwrap()
+                .then((data) => {
+                    console.log(data)
+                })
+                .catch((e) => {console.log(e)});
+            } else {
+                console.log('email invalid')
+            }
         }
     }
 
