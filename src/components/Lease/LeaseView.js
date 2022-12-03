@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { Table, Card, Button } from "react-bootstrap";
+import { Table, Card, Button, ButtonGroup } from "react-bootstrap";
 import PaymentForm from "../Payment/PaymentForm";
 import PaymentList from "../Payment/List/PaymentList";
 
@@ -62,41 +62,43 @@ function LeaseView(props) {
         <div>
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
                 <h2>Lease</h2>
-            <Table hover>
-                <tbody>
-                <tr onClick={viewUnit}>
-                    <td>unit</td>
-                    <td>{unit ? unit.unitNumber : ''}</td>
-                </tr>
-                <tr onClick={viewCustomer}>
-                    <td>customer</td>
-                    <td>{customer ? customer.name : ''}</td>
-                </tr>
-                <tr>
-                    <td>rate</td>
-                    <td>{lease ? lease.rate : ''}</td>
-                </tr>
-                <tr>
-                    <td>start date</td>
-                    <td>{lease ? lease.startDate : ''}</td>
-                </tr>
-                <tr>
-                    <td>end date</td>
-                    <td>{lease ? lease.endDate : ''}</td>
-                </tr>
-                <tr>
-                    <td>total cost</td>
-                    <td>{lease ? Number(lease.totalCost).toFixed(2) : ''}</td>
-                </tr>
-                <tr>
-                    <td>balance</td>
-                    <td>{balance ? Number(balance).toFixed(2) : ''}</td>
-                </tr>
-                </tbody>
-            </Table>
+                <Table hover>
+                    <tbody>
+                    <tr onClick={viewCustomer}>
+                        <td>Customer</td>
+                        <td>{customer ? customer.name : ''}</td>
+                    </tr>
+                    <tr onClick={viewUnit}>
+                        <td>Unit</td>
+                        <td>{unit ? unit.unitNumber : ''}</td>
+                    </tr>
+                    <tr>
+                        <td>Rate</td>
+                        <td>{lease ? lease.rate : ''}</td>
+                    </tr>
+                    <tr>
+                        <td>Start Date</td>
+                        <td>{lease ? lease.startDate : ''}</td>
+                    </tr>
+                    <tr>
+                        <td>End Date</td>
+                        <td>{lease ? lease.endDate : ''}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Cost</td>
+                        <td>{lease ? Number(lease.totalCost).toFixed(2) : ''}</td>
+                    </tr>
+                    <tr>
+                        <td>Remaining Balance</td>
+                        <td>{balance ? Number(balance).toFixed(2) : ''}</td>
+                    </tr>
+                    </tbody>
+                </Table>
+                <ButtonGroup>
+                    <Button onClick={editLease}>Edit</Button>
+                    <PaymentForm lease={lease}/>
+                </ButtonGroup>
             </Card>
-            <Button onClick={editLease}>edit</Button>
-            <PaymentForm lease={lease}/>
             {paymentArray.length > 0 ?
             <PaymentList
                 paymentArray={paymentArray}

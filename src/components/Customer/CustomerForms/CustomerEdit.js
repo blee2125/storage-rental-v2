@@ -53,12 +53,12 @@ function CustomerEdit(props) {
 
     return (
         <div>
-            Edit Customer
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
-            <CustomerForm 
-                customerObject={customerObject}
-                updateData={updateData}
-            />
+                <h2>Edit Customer</h2>
+                <CustomerForm 
+                    customerObject={customerObject}
+                    updateData={updateData}
+                />
             </Card>
             <Button onClick={handleSubmit}>Submit</Button>
         </div>

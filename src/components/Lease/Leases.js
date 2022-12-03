@@ -28,7 +28,7 @@ function Leases(props) {
 
     return (
         <div>
-            Leases
+            <h2>Leases</h2>
             <LeaseFilter
                 filter={filter}
                 setFilter={setFilter}

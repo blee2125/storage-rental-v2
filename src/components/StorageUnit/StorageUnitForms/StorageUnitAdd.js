@@ -36,8 +36,8 @@ function StorageUnitAdd(props) {
 
     return (
         <div>
-            Create Storage Unit
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <h2>Create Storage Units</h2>
                 <StorageUnitForm 
                     storageUnitObject={storageUnitObject}
                     updateData={updateData}

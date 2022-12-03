@@ -41,12 +41,12 @@ function CustomerAdd(props) {
 
     return (
         <div>
-            Create Customer
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
-            <CustomerForm 
-                customerObject={customerObject}
-                updateData={updateData}
-            />
+                <h2>Create Customer</h2>
+                <CustomerForm 
+                    customerObject={customerObject}
+                    updateData={updateData}
+                />
             </Card>
             <Button onClick={handleSubmit}>Submit</Button>
         </div>

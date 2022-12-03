@@ -48,8 +48,8 @@ function StorageUnitEdit(props) {
 
     return (
         <div>
-            Edit Storage Unit
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+                <h2>Edit Storage Unit</h2>
                 <StorageUnitForm 
                     storageUnitObject={storageUnitObject}
                     updateData={updateData}
