@@ -4,6 +4,7 @@ import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { createPayment } from '../../reducers/PaymentReducer'
+import { getLease } from '../../reducers/LeaseReducer';
 
 function PaymentForm(props) {
     const [show, setShow] = useState(false);
@@ -33,6 +34,7 @@ function PaymentForm(props) {
         props.createPayment(paymentObject)
             .unwrap()
             .then(() => {
+                props.getLease(paymentObject.leaseId)
                 handleClose()
             })
             .catch((e) => {console.log(e)});
@@ -88,4 +90,4 @@ function PaymentForm(props) {
     );
 }
 
-export default connect(null, {createPayment}) (PaymentForm)
+export default connect(null, { createPayment, getLease }) (PaymentForm)
