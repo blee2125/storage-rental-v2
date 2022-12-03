@@ -29,14 +29,14 @@ function LeaseListItem(props) {
     useEffect(() => {
         calcBalance()
         // eslint-disable-next-line
-    }, [])
+    }, [props])
 
     return (
         <tr onClick={()=> viewLease()}>
             <td>{unit ? unit.unitNumber : ''}</td>
             <td>{customer ? customer.name : ''}</td>
             <td>{props.lease.rate}</td>
-            <td>{balance ? Number(balance).toFixed(2) : ''}</td>
+            <td>{balance ? Number(balance).toFixed(2) : '0'}</td>
             <td>{props.lease.startDate}</td>
             <td>{props.lease.endDate}</td>
             <td>{leaseLength}</td>
