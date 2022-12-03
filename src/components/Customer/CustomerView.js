@@ -20,6 +20,14 @@ function CustomerView(props) {
         navigate(path, {state: ['customerId', customer._id]})
     }
 
+    function calcBalance() {
+        let balance = 0
+        leases.forEach(lease => {
+            balance = balance + lease.totalCost - lease.payments
+        })
+        return Number(balance).toFixed(2)
+    }
+
     return (
         <div>
             <Card bg='light' border="secondary" style={{ width: '350px', padding: '25px', margin: "25px"}}>
@@ -55,6 +63,14 @@ function CustomerView(props) {
                         </td>
                         <td>
                             {leases ? leases.length : ''}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Balance
+                        </td>
+                        <td>
+                            {leases ? calcBalance() : ''}
                         </td>
                     </tr>
                 </tbody>
