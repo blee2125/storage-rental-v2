@@ -17,6 +17,14 @@ export const getAllLeases = createAsyncThunk(
     }
 );
 
+export const getLease = createAsyncThunk(
+  "lease/get",
+  async (id) => {
+      const res = await LeaseService.get(id);
+      return res.data;
+  }
+);
+
 export const updateLease = createAsyncThunk(
     "lease/update",
     async ({id, data}) => {
@@ -48,6 +56,14 @@ export const leaseSlice = createSlice({
     })
     builder.addCase(getAllLeases.fulfilled, (state, action) => {
       state.leaseArray = action.payload;
+    })
+    builder.addCase(getLease.fulfilled, (state, action) => {
+      state.leaseArray = state.leaseArray.map(lease => {
+        if (lease._id === action.payload._id) {
+          return action.payload
+        }
+        return lease
+      })
     })
     builder.addCase(updateLease.fulfilled, (state, action) => {
       state.leaseArray = state.leaseArray.map(lease => {
