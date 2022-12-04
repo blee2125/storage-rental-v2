@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { Button, Card } from "react-bootstrap"
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { createLease } from "../../../reducers/LeaseReducer"
 import LeaseForm from "./LeaseForm";
 import { useLocation, useNavigate } from "react-router-dom";
+import { notify } from "../../../reducers/NotificationReducer";
 
 function LeaseAdd(props) {
+    const dispatch = useDispatch();
     let navigate = useNavigate();
     const {state} = useLocation();
     const id = state;
@@ -33,7 +35,7 @@ function LeaseAdd(props) {
         props.createLease(leaseObject)
         .unwrap()
         .then((data) => {
-            console.log(data)
+            dispatch(notify({message: 'Lease Created',type: 'success'}))
             navigate(`/leases/view/${data._id}`)
         })
         .catch((e) => {console.log(e)});
@@ -66,4 +68,4 @@ function LeaseAdd(props) {
     )
 }
 
-export default connect(null, { createLease }) (LeaseAdd)
+export default connect(null, { createLease, notify }) (LeaseAdd)

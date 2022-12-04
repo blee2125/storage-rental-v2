@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { createPayment } from '../../reducers/PaymentReducer'
 import { getLease } from '../../reducers/LeaseReducer';
+import { notify } from '../../reducers/NotificationReducer';
 
 function PaymentForm(props) {
+    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -35,6 +37,7 @@ function PaymentForm(props) {
             .unwrap()
             .then(() => {
                 props.getLease(paymentObject.leaseId)
+                dispatch(notify({message: 'Payment Added',type: 'success'}))
                 handleClose()
             })
             .catch((e) => {console.log(e)});
@@ -90,4 +93,4 @@ function PaymentForm(props) {
     );
 }
 
-export default connect(null, { createPayment, getLease }) (PaymentForm)
+export default connect(null, { createPayment, getLease, notify }) (PaymentForm)
