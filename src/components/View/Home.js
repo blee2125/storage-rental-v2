@@ -4,6 +4,7 @@ import UnitStats from "../DataStats/UnitStats";
 import CustomerStats from "../DataStats/CustomerStats";
 import LeasePieChart from "../DataStats/LeasePieChart";
 import BalanceStats from "../DataStats/BalanceStats";
+import PaymentStats from "../DataStats/PaymentStats";
 
 function Home(props) {
 
@@ -13,6 +14,7 @@ function Home(props) {
                 <Col lg='auto'><UnitStats /></Col>
                 <Col lg='auto'><LeasePieChart /></Col>
                 <Col lg='auto'><BalanceStats /></Col>
+                <Col lg='auto'><PaymentStats /></Col>
                 <Col lg='auto'><CustomerStats /></Col>
             </Row>
         </div>
