@@ -58,6 +58,7 @@ function LeaseEdit(props) {
                     units={units}
                     leaseObject={leaseObject}
                     updateData={updateData}
+                    editForm={true}
                 />
             </Card>
             <Button onClick={handleSubmit}>Submit</Button>

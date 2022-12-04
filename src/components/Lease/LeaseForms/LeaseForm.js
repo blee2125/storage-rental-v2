@@ -3,13 +3,39 @@ import { Form } from "react-bootstrap";
 import LeaseCustomerForm from "./LeaseCustomerForm";
 import LeaseStorageUnitForm from "./LeaseStorageUnitForm";
 import CalcFunc from "../../../functions/CalcFunc";
+import DateFunc from '../../../functions/DateFunc'
+import { useSelector } from "react-redux";
 
 export const LeaseForm = (props) => {
   const calcTotal = () => {
     let t = CalcFunc.calcTotal(props.leaseObject.startDate, props.leaseObject.endDate, props.leaseObject.rate)
     props.updateData('totalCost', t)
   }
+  const leases = useSelector((state) => state.leaseState.leaseArray)
   
+  function nextLease() {
+    //leases for unit
+    const leaseDates = leases.filter(l => {
+      if (l.unitId === props.leaseObject.unitId) {
+        if (new Date(props.leaseObject.endDate) < new Date(l.startDate)) {
+          return l
+        } else {
+          return undefined
+        }
+      } else {
+        return undefined
+      }
+    })
+    if (leaseDates.length > 1) {
+      leaseDates.sort(function(a,b){
+        return new Date(a.startDate) - new Date(b.startDate)
+      });
+      return leaseDates[0].startDate
+    } else {
+      return undefined
+    }
+  }
+
   useEffect(() => {
     calcTotal()
     // eslint-disable-next-line
@@ -33,16 +59,30 @@ export const LeaseForm = (props) => {
           onChange={e => props.updateData('startDate', e.target.value)}
         />
       </Form.Group>
+      {props.editForm ? 
       <Form.Group className="mb-3" controlId="formGroupEnd">
-        <Form.Label>End Date</Form.Label>
-        <Form.Control 
-          type="date" 
-          placeholder="end" 
-          min={props.leaseObject.startDate}
-          value={props.leaseObject.endDate}
-          onChange={e => props.updateData('endDate', e.target.value)}
-        />
-      </Form.Group>
+      <Form.Label>End Date</Form.Label>
+      <Form.Control 
+        type="date" 
+        placeholder="end" 
+        min={props.leaseObject.startDate}
+        max={nextLease()}
+        value={props.leaseObject.endDate}
+        onChange={e => props.updateData('endDate', e.target.value)}
+      />
+    </Form.Group>
+     : 
+     <Form.Group className="mb-3" controlId="formGroupEnd">
+     <Form.Label>End Date</Form.Label>
+     <Form.Control 
+       type="date" 
+       placeholder="end" 
+       min={props.leaseObject.startDate}
+       value={props.leaseObject.endDate}
+       onChange={e => props.updateData('endDate', e.target.value)}
+     />
+    </Form.Group>}
+      {(props.editForm && nextLease() !== undefined) ? <p>Next lease starts on {DateFunc.monthDayYear(nextLease())}</p> : ''}
       {(props.leaseObject.startDate === '' || props.leaseObject.endDate === '') ?
         ''
       :
