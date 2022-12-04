@@ -1,25 +1,25 @@
 import React, {useEffect, useState} from "react";
 import { connect, useSelector } from "react-redux";
+import { Card } from "react-bootstrap"
 import { getAllStorageUnits } from "../../reducers/StorageUnitReducer"
 import StorageUnitList from "./List/StorageUnitList";
 import StorageUnitSearch from "./List/StorageUnitSearch";
 import AvailableFilter from "./List/AvailableFilter";
-import { Card } from "react-bootstrap"
+import TypeFilter from "./List/TypeFilter";
+import SizeFilter from "./List/SizeFilter";
 
 function StorageUnits(props) {
     const units = useSelector((state) => state.storageUnitState.storageUnitArray)
     const [search, setSearch] = useState('')
     const [availableFilter, setAvailableFilter] = useState('')
+    const [typeFilter, setTypeFilter] = useState('')
+    const [sizeFilter, setSizeFilter] = useState('')
 
     const filterUnits = units.filter(unit => {
         if (search === '') {
             return unit
         }
         if (unit.unitNumber.toLowerCase().includes(search.toLowerCase())) {
-            return unit
-        } else if (unit.type.toLowerCase().includes(search.toLowerCase())) {
-            return unit
-        } else if (unit.size.toLowerCase().includes(search.toLowerCase())) {
             return unit
         } else if (unit.location.toLowerCase().includes(search.toLowerCase())) {
             return unit
@@ -42,6 +42,32 @@ function StorageUnits(props) {
         return undefined
     })
 
+    const filterType = filterAvailable.filter(unit => {
+        if (typeFilter === '') {
+            return unit
+        } else if (typeFilter === 'Self Storage') {
+            if (unit.type === 'Self Storage') {
+                return unit
+            }
+        } else if (typeFilter === 'Vehicle') {
+            if (unit.type === 'Vehicle') {
+                return unit
+            }
+        }
+        return undefined
+    })
+
+    const filterSize = filterType.filter(unit => {
+        if (sizeFilter === '') {
+            return unit
+        } else {
+            if (unit.size === sizeFilter) {
+                return unit
+            }
+        }
+        return undefined
+    })
+
     useEffect(() => {
         props.getAllStorageUnits()
         // eslint-disable-next-line
@@ -55,13 +81,21 @@ function StorageUnits(props) {
                     search={search}
                     setSearch={setSearch}
                 />
+                <TypeFilter
+                    typeFilter={typeFilter}
+                    setTypeFilter={setTypeFilter}
+                />
+                <SizeFilter
+                    sizeFilter={sizeFilter}
+                    setSizeFilter={setSizeFilter}
+                />
                 <AvailableFilter
                     availableFilter={availableFilter}
                     setAvailableFilter={setAvailableFilter}
                 />
             </Card>
             <StorageUnitList
-                unitsArray={filterAvailable}
+                unitsArray={filterSize}
             />
         </div>
     )
