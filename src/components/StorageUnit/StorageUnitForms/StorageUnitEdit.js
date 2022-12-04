@@ -34,7 +34,7 @@ function StorageUnitEdit(props) {
             props.updateStorageUnit({id: storageUnit._id, data: storageUnitObject})
             .unwrap()
             .then((data) => {
-                dispatch(notify({message: `${data.unitNumber} Updated`,type: 'success'}))
+                dispatch(notify({message: `Unit ${data.unitNumber} Updated`,type: 'success'}))
                 navigate(`/storage-units/view/${data._id}`)
             })
             .catch((e) => {console.log(e)});

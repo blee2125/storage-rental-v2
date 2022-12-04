@@ -30,7 +30,7 @@ function StorageUnitAdd(props) {
             props.createStorageUnit(storageUnitObject)
             .unwrap()
             .then((data) => {
-                dispatch(notify({message: `${data.unitNumber} Created`,type: 'success'}))
+                dispatch(notify({message: `Unit ${data.unitNumber} Created`,type: 'success'}))
             })
             .catch((e) => {console.log(e)});
         }
