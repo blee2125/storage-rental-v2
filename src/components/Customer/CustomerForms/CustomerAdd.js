@@ -1,10 +1,14 @@
 import React, {useState} from "react";
 import { Button, Card } from "react-bootstrap"
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { createCustomer } from "../../../reducers/CustomerReducer"
 import CustomerForm from "./CustomerForm";
+import { notify } from "../../../reducers/NotificationReducer";
 
 function CustomerAdd(props) {
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
     const [customerObject, setCustomerObject] = useState({
         name: '',
         email: '',
@@ -30,7 +34,8 @@ function CustomerAdd(props) {
                 props.createCustomer(customerObject)
                 .unwrap()
                 .then((data) => {
-                    console.log(data)
+                    dispatch(notify({message: 'Customer Added',type: 'success'}))
+                    navigate(`/customers/view/${data._id}`)
                 })
                 .catch((e) => {console.log(e)});
             } else {
@@ -53,4 +58,4 @@ function CustomerAdd(props) {
     )
 }
 
-export default connect(null, { createCustomer }) (CustomerAdd)
+export default connect(null, { createCustomer, notify }) (CustomerAdd)

@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { Button, Card } from "react-bootstrap"
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { updateLease } from "../../../reducers/LeaseReducer"
 import LeaseForm from "./LeaseForm";
 import { useParams, useNavigate } from "react-router-dom";
+import { notify } from "../../../reducers/NotificationReducer";
 
 function LeaseEdit(props) {
+    const dispatch = useDispatch();
     let navigate = useNavigate();
     const routeParams = useParams();
     const lease = useSelector((state) => state.leaseState.leaseArray.filter(l => l._id === routeParams.id)[0])
@@ -33,7 +35,7 @@ function LeaseEdit(props) {
         props.updateLease({id: lease._id, data: leaseObject})
         .unwrap()
         .then((data) => {
-            console.log(data)
+            dispatch(notify({message: 'Lease Updated',type: 'success'}))
             navigate(`/leases/view/${data._id}`)
         })
         .catch((e) => {console.log(e)});
@@ -63,4 +65,4 @@ function LeaseEdit(props) {
     )
 }
 
-export default connect(null, { updateLease }) (LeaseEdit)
+export default connect(null, { updateLease, notify }) (LeaseEdit)

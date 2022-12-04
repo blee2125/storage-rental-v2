@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, Card } from "react-bootstrap"
 import { updateCustomer } from "../../../reducers/CustomerReducer"
 import CustomerForm from "./CustomerForm";
+import { notify } from "../../../reducers/NotificationReducer";
 
 function CustomerEdit(props) {
+    const dispatch = useDispatch();
     let navigate = useNavigate();
     const routeParams = useParams();
     const customer = useSelector((state) => state.customerState.customerArray.filter(c => c._id === routeParams.id)[0])
@@ -25,7 +27,7 @@ function CustomerEdit(props) {
         setCustomerObject(customerObject => ({
             ...customerObject,
             ...updatedValue
-        }));        
+        }));
     };
 
     const handleSubmit = () => {
@@ -34,6 +36,7 @@ function CustomerEdit(props) {
                 props.updateCustomer({id: customer._id, data: customerObject})
                 .unwrap()
                 .then((data) => {
+                    dispatch(notify({message: 'Customer Info Updated',type: 'success'}))
                     navigate(`/customers/view/${data._id}`)
                 })
                 .catch((e) => {console.log(e)});
@@ -65,4 +68,4 @@ function CustomerEdit(props) {
     )
 }
 
-export default connect(null, { updateCustomer }) (CustomerEdit)
+export default connect(null, { updateCustomer, notify }) (CustomerEdit)

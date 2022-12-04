@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import { Button, Card } from "react-bootstrap"
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { createStorageUnit } from "../../../reducers/StorageUnitReducer"
 import StorageUnitForm from "./StorageUnitForm";
+import { notify } from "../../../reducers/NotificationReducer";
 
 function StorageUnitAdd(props) {
+    const dispatch = useDispatch();
     const [storageUnitObject, setStorageUnitObject] = useState({
         unitNumber: '',
         type: '',
@@ -28,7 +30,7 @@ function StorageUnitAdd(props) {
             props.createStorageUnit(storageUnitObject)
             .unwrap()
             .then((data) => {
-                console.log(data)
+                dispatch(notify({message: `${data.unitNumber} Created`,type: 'success'}))
             })
             .catch((e) => {console.log(e)});
         }
@@ -48,4 +50,4 @@ function StorageUnitAdd(props) {
     )
 }
 
-export default connect(null, { createStorageUnit }) (StorageUnitAdd)
+export default connect(null, { createStorageUnit, notify }) (StorageUnitAdd)

@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { Button, Card } from "react-bootstrap"
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { updateStorageUnit } from "../../../reducers/StorageUnitReducer"
 import StorageUnitForm from "./StorageUnitForm";
 import { useParams, useNavigate } from "react-router-dom";
+import { notify } from "../../../reducers/NotificationReducer";
 
 function StorageUnitEdit(props) {
+    const dispatch = useDispatch();
     let navigate = useNavigate();
     const routeParams = useParams();
     const storageUnit = useSelector((state) => state.storageUnitState.storageUnitArray.filter(u => u._id === routeParams.id)[0])
@@ -32,6 +34,7 @@ function StorageUnitEdit(props) {
             props.updateStorageUnit({id: storageUnit._id, data: storageUnitObject})
             .unwrap()
             .then((data) => {
+                dispatch(notify({message: `${data.unitNumber} Updated`,type: 'success'}))
                 navigate(`/storage-units/view/${data._id}`)
             })
             .catch((e) => {console.log(e)});
@@ -60,4 +63,4 @@ function StorageUnitEdit(props) {
     )
 }
 
-export default connect(null, { updateStorageUnit }) (StorageUnitEdit)
+export default connect(null, { updateStorageUnit, notify }) (StorageUnitEdit)
