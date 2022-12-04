@@ -87,6 +87,25 @@ export const LeaseStorageUnitForm = (props) => {
     setLocation(u[0].location)
     setSize(u[0].size)
   }
+
+  const changeLoc = (loc) => {
+    setLocation(loc)
+    props.updateData('unitId', '')
+    props.updateData('rate', '')
+  }
+
+  const changeSize = (s) => {
+    setSize(s)
+    props.updateData('unitId', '')
+    props.updateData('rate', '')
+  }
+
+  const changeUnit = (u) => {
+    props.updateData('unitId', u)
+    if (u === '') {
+      props.updateData('rate', '')
+    }
+  }
   
   useEffect(() => {
     uniqueLocations()
@@ -103,7 +122,7 @@ export const LeaseStorageUnitForm = (props) => {
           <Form.Label>Location</Form.Label>
           <Form.Select
             value={location || ''}
-            onChange={e => setLocation(e.target.value)}
+            onChange={e => changeLoc(e.target.value)}
           >
             <option value=''></option>
             {mapLocations}
@@ -114,7 +133,7 @@ export const LeaseStorageUnitForm = (props) => {
           <Form.Label>Size</Form.Label>
           <Form.Select
             value={size || ''}
-            onChange={e => setSize(e.target.value)}
+            onChange={e => changeSize(e.target.value)}
           >
             <option value=''></option>
             {mapSize}
@@ -125,13 +144,12 @@ export const LeaseStorageUnitForm = (props) => {
           <Form.Label>Unit</Form.Label>
           <Form.Select
             value={props.unitId || ''}
-            onChange={e => props.updateData('unitId', e.target.value)}
+            onChange={e => changeUnit(e.target.value)}
           >
             <option value=''></option>
             {listStorageUnits}
           </Form.Select>
         </Form.Group>}
-        
       </div>
     );
 }
