@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CalcFunc from "../../../functions/CalcFunc";
 import DateFunc from "../../../functions/DateFunc";
 
 function LeaseListItem(props) {
@@ -19,13 +20,7 @@ function LeaseListItem(props) {
         navigate(path)
     }
 
-    const calcBalance = () => {
-        if (props.lease.payments > 0) {
-            return Number(props.lease.totalCost - props.lease.payments).toFixed(2)
-        } else {
-            return Number(props.lease.totalCost).toFixed(2)
-        }
-    }
+    const calcBalance = CalcFunc.calcBalance([props.lease], 'totalCost', 'payments')
 
     return (
         <tr>
@@ -33,7 +28,7 @@ function LeaseListItem(props) {
             <td>{DateFunc.monthDayYear(props.lease.startDate)} - {DateFunc.monthDayYear(props.lease.endDate)}</td>
             <td onClick={viewLease}>{props.lease._id}</td>
             <td onClick={viewStorageUnit}>{unit ? unit.unitNumber : ''}</td>
-            <td >{props.lease.totalCost ? calcBalance() : ''}</td>
+            <td >{props.lease.totalCost ? calcBalance : ''}</td>
         </tr>
     );
 }

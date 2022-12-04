@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button, Card, Table } from "react-bootstrap"
 import LeaseList from './List/LeaseList'
+import FormatFunc from "../../functions/FormatFunc";
+import CalcFunc from "../../functions/CalcFunc";
 
 function CustomerView(props) {
     let navigate = useNavigate();
@@ -20,20 +22,9 @@ function CustomerView(props) {
         navigate(path, {state: ['customerId', customer._id]})
     }
 
-    function calcBalance() {
-        let balance = 0
-        leases.forEach(lease => {
-            balance = balance + lease.totalCost - lease.payments
-        })
-        return Number(balance).toFixed(2)
-    }
+    const calcBalance = CalcFunc.calcBalance(leases, 'totalCost', 'payments')
 
-    const formatPhone = () => {
-        const phone = customer.phone
-        const p = phone.split('')
-        const reformat = '('+p[0]+p[1]+p[2]+') '+p[3]+p[4]+p[5]+'-'+p[6]+p[7]+p[8]+p[9]
-        return reformat
-    }
+    const formatPhone = (p) => FormatFunc.formatPhone(p)
 
     return (
         <div>
@@ -61,7 +52,7 @@ function CustomerView(props) {
                             <b>Phone</b>
                         </td>
                         <td>
-                            {customer ? formatPhone() : ''}
+                            {customer ? formatPhone(customer.phone) : ''}
                         </td>
                     </tr>
                     <tr>
@@ -77,7 +68,7 @@ function CustomerView(props) {
                             <b>Balance</b>
                         </td>
                         <td>
-                            {leases ? calcBalance() : ''}
+                            {leases ? calcBalance : ''}
                         </td>
                     </tr>
                 </tbody>

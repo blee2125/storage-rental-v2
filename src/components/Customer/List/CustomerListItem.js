@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import FormatFunc from "../../../functions/FormatFunc";
 
 function CustomerListItem(props) {
     let navigate = useNavigate();
@@ -10,18 +11,13 @@ function CustomerListItem(props) {
         navigate(path, {state: {customerToView}})
     }
 
-    const formatPhone = () => {
-        const phone = props.customer.phone
-        const p = phone.split('')
-        const reformat = '('+p[0]+p[1]+p[2]+') '+p[3]+p[4]+p[5]+'-'+p[6]+p[7]+p[8]+p[9]
-        return reformat
-    }
+    const formatPhone = FormatFunc.formatPhone(props.customer.phone)
 
     return (
         <tr onClick={()=> viewCustomer()}>
             <td>{props.customer.name}</td>
             <td>{props.customer.email}</td>
-            <td>{formatPhone()}</td>
+            <td>{formatPhone}</td>
         </tr>
     );
 }
