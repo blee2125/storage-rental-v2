@@ -40,6 +40,23 @@ class CalcFunc {
         return totalCost
     }
 
+    // returns balance = totalCost - payments
+    calcBalance = (array, key1, key2) => {
+        let balance = 0
+        array.forEach(a => {
+            balance = balance + a[key1] - a[key2]
+        })
+        return Number(balance).toFixed(2)
+    }
+
+    // returns sum of property on array
+    calcSum = (array, key) => {
+        let sum = 0
+        array.forEach(a => {
+            sum = sum + a[key]
+        })
+        return Number(sum).toFixed(2)
+    }
 
 
 }
