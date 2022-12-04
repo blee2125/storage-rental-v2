@@ -3,10 +3,10 @@ import { connect, useSelector } from "react-redux";
 import { Card } from "react-bootstrap"
 import { getAllStorageUnits } from "../../reducers/StorageUnitReducer"
 import StorageUnitList from "./List/StorageUnitList";
-import StorageUnitSearch from "./List/StorageUnitSearch";
-import AvailableFilter from "./List/AvailableFilter";
-import TypeFilter from "./List/TypeFilter";
-import SizeFilter from "./List/SizeFilter";
+import StorageUnitSearch from "./List/Filters/StorageUnitSearch";
+import AvailableFilter from "./List/Filters/AvailableFilter";
+import TypeFilter from "./List/Filters/TypeFilter";
+import SizeFilter from "./List/Filters/SizeFilter";
 
 function StorageUnits(props) {
     const units = useSelector((state) => state.storageUnitState.storageUnitArray)

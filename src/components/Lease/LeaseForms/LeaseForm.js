@@ -30,9 +30,7 @@ export const LeaseForm = (props) => {
         updateData={props.updateData}
         leaseObject={props.leaseObject}
       />
-      {(props.leaseObject.startDate === '' || props.leaseObject.endDate === '') ?
-        ''
-      :
+      {(props.leaseObject.startDate === '' || props.leaseObject.endDate === '') ? '' :
       <LeaseStorageUnitForm
         units={props.units}
         unitId={props.leaseObject.unitId}
