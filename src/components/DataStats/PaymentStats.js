@@ -1,23 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Card } from "react-bootstrap";
+import CalcFunc from "../../functions/CalcFunc";
 
 function PaymentStats() {
     const payments = useSelector((state) => state.paymentState.paymentArray)
 
-    const calcTotal = () => {
-        let total = 0
-        payments.forEach(pay => {
-            total = total + pay.payment
-        })
-        return Number(total).toFixed(2)
-    }
+    const calcTotal = CalcFunc.calcSum(payments, 'payment')
 
     return (
         <div>
             <Card bg='light' border="secondary" style={{ width: '300px', padding: '25px', margin: "25px"}}>
                 <h4>Payments Stats</h4>
-                <p>Total Payments - ${calcTotal()}</p>
+                <p>Total Payments - ${calcTotal}</p>
             </Card>
         </div>
     )

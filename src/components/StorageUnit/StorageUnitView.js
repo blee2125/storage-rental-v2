@@ -72,9 +72,7 @@ function StorageUnitView(props) {
             : ''}
             </Card>
             
-            {storageUnit ? <LeaseList
-                leases={leases}
-            /> : ''}
+            {storageUnit ? <LeaseList leases={leases} /> : ''}
         </div>
     )
 }
