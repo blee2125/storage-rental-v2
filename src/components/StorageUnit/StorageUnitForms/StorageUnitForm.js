@@ -16,12 +16,14 @@ export const StorageUnitForm = (props) => {
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupType">
           <Form.Label>Type</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Type" 
-            value={props.storageUnitObject.type}
+          <Form.Select
+            value={props.storageUnitObject.type || ''}
             onChange={e => props.updateData('type', e.target.value)}
-          />
+          >
+            <option value=''></option>
+            <option value='Self Storage'>Self Storage</option>
+            <option value='Vehicle'>Vehicle</option>
+          </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGroupSize">
           <Form.Label>Size</Form.Label>
