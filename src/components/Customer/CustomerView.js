@@ -28,6 +28,13 @@ function CustomerView(props) {
         return Number(balance).toFixed(2)
     }
 
+    const formatPhone = () => {
+        const phone = customer.phone
+        const p = phone.split('')
+        const reformat = '('+p[0]+p[1]+p[2]+') '+p[3]+p[4]+p[5]+'-'+p[6]+p[7]+p[8]+p[9]
+        return reformat
+    }
+
     return (
         <div>
             <Card bg='light' border="secondary" style={{ width: '350px', padding: '25px', margin: "25px"}}>
@@ -54,7 +61,7 @@ function CustomerView(props) {
                             <b>Phone</b>
                         </td>
                         <td>
-                            {customer ? customer.phone : ''}
+                            {customer ? formatPhone() : ''}
                         </td>
                     </tr>
                     <tr>
