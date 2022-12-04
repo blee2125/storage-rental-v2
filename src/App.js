@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import NavBar from './components/View/NavBar';
+import Notification from './components/View/Notification'
 import Home from './components/View/Home'
 import Customers from './components/Customer/Customers'
 import CustomerAdd from './components/Customer/CustomerForms/CustomerAdd'
@@ -39,6 +40,7 @@ function App(props) {
   return (
     <div className="App">
         <NavBar/>
+        <Notification />
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path='customers'>
