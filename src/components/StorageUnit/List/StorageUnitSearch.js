@@ -9,7 +9,7 @@ function StorageUnitSearch(props) {
                 <Form.Group className="mb-3" controlId="formGroupSearch">
                 <Form.Control 
                     type="text" 
-                    placeholder="Search" 
+                    placeholder="Search (Unit Number or Location)" 
                     defaultValue={props.search}
                     onChange={e => props.setSearch(e.target.value)}
                 />
