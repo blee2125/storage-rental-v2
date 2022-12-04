@@ -90,7 +90,7 @@ function LeaseView(props) {
                     </tr>
                     <tr>
                         <td>Remaining Balance</td>
-                        <td>{balance ? Number(balance).toFixed(2) : ''}</td>
+                        <td>{balance ? Number(balance).toFixed(2) : '0.00'}</td>
                     </tr>
                     </tbody>
                 </Table>
