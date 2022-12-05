@@ -10,10 +10,10 @@ function LeaseListItem(props) {
 
     const leaseLength = DateFunc.leaseLength(props.lease.startDate, props.lease.endDate)
 
-    const viewStorageUnit = () => {
-        let path = `../../storage-units/view/${unit._id}`
-        navigate(path)
-    }
+    // const viewStorageUnit = () => {
+    //     let path = `../../storage-units/view/${unit._id}`
+    //     navigate(path)
+    // }
 
     const viewLease = () => {
         let path = `../../leases/view/${props.lease._id}`
@@ -23,11 +23,11 @@ function LeaseListItem(props) {
     const calcBalance = CalcFunc.calcBalance([props.lease], 'totalCost', 'payments')
 
     return (
-        <tr>
+        <tr onClick={viewLease}>
             <td>{leaseLength}</td>
             <td>{DateFunc.monthDayYear(props.lease.startDate)} - {DateFunc.monthDayYear(props.lease.endDate)}</td>
-            <td onClick={viewLease}>{props.lease._id}</td>
-            <td onClick={viewStorageUnit}>{unit ? unit.unitNumber : ''}</td>
+            <td>{props.lease._id}</td>
+            <td>{unit ? unit.unitNumber : ''}</td>
             <td >{props.lease.totalCost ? calcBalance : ''}</td>
         </tr>
     );
