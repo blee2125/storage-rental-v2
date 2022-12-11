@@ -18,6 +18,7 @@ function PaymentForm(props) {
         leaseId: '',
         customerId: '',
         payment: '',
+        paymentType: '',
         date: defaultDate
     });
 
@@ -69,6 +70,19 @@ function PaymentForm(props) {
                         placeholder="payment" 
                         onChange={e => updateData('payment', e.target.value)}
                     />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPaymentType">
+                    <Form.Label>Type</Form.Label>
+                    <Form.Select
+                        onChange={e => updateData('paymentType', e.target.value)}
+                    >
+                        <option value=''></option>
+                        <option value='Cash'>Cash</option>
+                        <option value='Check'>Check</option>
+                        <option value='Credit Card'>Credit Card</option>
+                        <option value='Adjustment'>Adjustment</option>
+                        <option value='Other'>Other</option>
+                    </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formGroupDate">
                     <Form.Control 
