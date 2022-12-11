@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import DateFunc from "../../../functions/DateFunc";
 
@@ -31,7 +31,8 @@ export const LeaseDateForm = (props) => {
 
     return (
         <div>
-            <Form.Group className="mb-3" controlId="formGroupStart">
+          <Row>
+            <Form.Group as={Col} className="mb-3" controlId="formGroupStart">
                 <Form.Label>Start Date</Form.Label>
                 <Form.Control 
                 type="date" 
@@ -42,7 +43,7 @@ export const LeaseDateForm = (props) => {
                 />
             </Form.Group>
             {props.editForm ? 
-            <Form.Group className="mb-3" controlId="formGroupEnd">
+            <Form.Group as={Col} className="mb-3" controlId="formGroupEnd">
                 <Form.Label>End Date</Form.Label>
                 <Form.Control 
                     type="date" 
@@ -54,7 +55,7 @@ export const LeaseDateForm = (props) => {
                 />
             </Form.Group>
             : 
-            <Form.Group className="mb-3" controlId="formGroupEnd">
+            <Form.Group as={Col} className="mb-3" controlId="formGroupEnd">
                 <Form.Label>End Date</Form.Label>
                 <Form.Control 
                 type="date" 
@@ -64,6 +65,7 @@ export const LeaseDateForm = (props) => {
                 onChange={e => props.updateData('endDate', e.target.value)}
                 />
             </Form.Group>}
+          </Row>
         {(props.editForm && nextLease() !== undefined) ? <p>Next lease starts on {DateFunc.monthDayYear(nextLease())}</p> : ''}
         </div>
     );
