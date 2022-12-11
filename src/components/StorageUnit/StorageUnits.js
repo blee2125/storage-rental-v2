@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { connect, useSelector } from "react-redux";
-import { Card } from "react-bootstrap"
+import { Card, Col, Row } from "react-bootstrap"
 import { getAllStorageUnits } from "../../reducers/StorageUnitReducer"
 import StorageUnitList from "./List/StorageUnitList";
 import StorageUnitSearch from "./List/Filters/StorageUnitSearch";
@@ -81,18 +81,26 @@ function StorageUnits(props) {
                     search={search}
                     setSearch={setSearch}
                 />
-                <TypeFilter
-                    typeFilter={typeFilter}
-                    setTypeFilter={setTypeFilter}
-                />
-                <SizeFilter
-                    sizeFilter={sizeFilter}
-                    setSizeFilter={setSizeFilter}
-                />
-                <AvailableFilter
-                    availableFilter={availableFilter}
-                    setAvailableFilter={setAvailableFilter}
-                />
+                <Row>
+                    <Col>
+                        <TypeFilter
+                            typeFilter={typeFilter}
+                            setTypeFilter={setTypeFilter}
+                        />
+                    </Col>
+                    <Col>
+                        <SizeFilter
+                            sizeFilter={sizeFilter}
+                            setSizeFilter={setSizeFilter}
+                        />
+                    </Col>
+                    <Col>
+                        <AvailableFilter
+                            availableFilter={availableFilter}
+                            setAvailableFilter={setAvailableFilter}
+                        />
+                    </Col>
+                </Row>
             </Card>
             <StorageUnitList
                 unitsArray={filterSize}
