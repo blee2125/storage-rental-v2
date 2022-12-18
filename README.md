@@ -1,4 +1,4 @@
-# Health Tracker Dashboard
+# Storage Rental
 
 An app built to manage leasing storage units.
 
@@ -11,6 +11,7 @@ Backend built using Express.js and MongoDB - [Github Link](https://github.com/bl
 ###### Storage Units
 
 ###### Leases
+- Download PDF of lease
 
 ###### Customers
 
