@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Table, Card, Button, ButtonGroup } from "react-bootstrap";
 import PaymentForm from "../Payment/PaymentForm";
 import PaymentList from "../Payment/List/PaymentList";
+import DownloadLeasePDF from "./LeasePDF/DownloadLeasePDF";
 
 function LeaseView(props) {
     let navigate = useNavigate();
@@ -53,6 +54,10 @@ function LeaseView(props) {
         }
     }
 
+    const downloadpdf = () => {
+        DownloadLeasePDF({lease, customer, unit})
+    }
+
     useEffect(() => {
         loadData()
         // eslint-disable-next-line
@@ -97,6 +102,7 @@ function LeaseView(props) {
                 <ButtonGroup>
                     <Button onClick={editLease}>Edit</Button>
                     <PaymentForm lease={lease}/>
+                    <Button onClick={downloadpdf}>Download PDF</Button>
                 </ButtonGroup>
             </Card>
             {paymentArray.length > 0 ?
