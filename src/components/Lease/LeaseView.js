@@ -100,9 +100,9 @@ function LeaseView(props) {
                     </tbody>
                 </Table>
                 <ButtonGroup>
-                    <Button onClick={editLease}>Edit</Button>
+                    <Button variant="outline-primary" onClick={editLease}>Edit</Button>
                     <PaymentForm lease={lease}/>
-                    <Button onClick={downloadpdf}>Download PDF</Button>
+                    <Button variant="outline-primary" onClick={downloadpdf}>Download PDF</Button>
                 </ButtonGroup>
             </Card>
             {paymentArray.length > 0 ?

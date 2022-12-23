@@ -54,7 +54,7 @@ function PaymentForm(props) {
 
     return (
         <>
-        <Button onClick={handleShow}>
+        <Button variant="outline-primary" onClick={handleShow}>
             Add payment
         </Button>
 
