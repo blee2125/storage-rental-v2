@@ -67,7 +67,7 @@ function LeasePieChart(props) {
 
   return (
     <>
-      <Card bg='light' border="secondary" style={{ width: '400px', padding: '25px', margin: "25px"}}>
+      <Card bg='light' border="secondary" style={{ width: '400px', padding: '25px', margin: "5px"}}>
         <Chart
           type="pie"
           data={graphData}

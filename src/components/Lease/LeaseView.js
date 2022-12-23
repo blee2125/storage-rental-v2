@@ -5,6 +5,7 @@ import { Table, Card, Button, ButtonGroup } from "react-bootstrap";
 import PaymentForm from "../Payment/PaymentForm";
 import PaymentList from "../Payment/List/PaymentList";
 import DownloadLeasePDF from "./LeasePDF/DownloadLeasePDF";
+import DateFunc from "../../functions/DateFunc";
 
 function LeaseView(props) {
     let navigate = useNavigate();
@@ -68,33 +69,33 @@ function LeaseView(props) {
             <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
                 <h2>Lease</h2>
                 <Table hover>
-                    <tbody>
+                    <tbody className="lease-table">
                     <tr onClick={viewCustomer}>
-                        <td>Customer</td>
+                        <td className="lease-table-keys">Customer</td>
                         <td>{customer ? customer.name : ''}</td>
                     </tr>
                     <tr onClick={viewUnit}>
-                        <td>Unit</td>
+                        <td className="lease-table-keys">Unit</td>
                         <td>{unit ? unit.unitNumber : ''}</td>
                     </tr>
                     <tr>
-                        <td>Rate</td>
+                        <td className="lease-table-keys">Rate</td>
                         <td>{lease ? lease.rate : ''}</td>
                     </tr>
                     <tr>
-                        <td>Start Date</td>
-                        <td>{lease ? lease.startDate : ''}</td>
+                        <td className="lease-table-keys">Start Date</td>
+                        <td>{lease ? DateFunc.monthDayYear(lease.startDate) : ''}</td>
                     </tr>
                     <tr>
-                        <td>End Date</td>
-                        <td>{lease ? lease.endDate : ''}</td>
+                        <td className="lease-table-keys">End Date</td>
+                        <td>{lease ? DateFunc.monthDayYear(lease.endDate) : ''}</td>
                     </tr>
                     <tr>
-                        <td>Total Cost</td>
+                        <td className="lease-table-keys">Total Cost</td>
                         <td>{lease ? Number(lease.totalCost).toFixed(2) : ''}</td>
                     </tr>
                     <tr>
-                        <td>Remaining Balance</td>
+                        <td className="lease-table-keys">Remaining Balance</td>
                         <td>{balance ? Number(balance).toFixed(2) : '0.00'}</td>
                     </tr>
                     </tbody>

@@ -9,10 +9,10 @@ import PaymentStats from "../DataStats/PaymentStats";
 function Home(props) {
 
     return (
-        <div>
+        <div style={{margin: '25px'}}>
             <Row>
-                <Col lg='auto'><UnitStats /></Col>
                 <Col lg='auto'><LeasePieChart /></Col>
+                <Col lg='auto'><UnitStats /></Col>
                 <Col lg='auto'><BalanceStats /></Col>
                 <Col lg='auto'><PaymentStats /></Col>
                 <Col lg='auto'><CustomerStats /></Col>

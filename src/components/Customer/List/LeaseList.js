@@ -15,14 +15,16 @@ function LeaseList(props) {
 
     return (
         <div>
-            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px"}}>
+            <Card bg='light' border="secondary" style={{ padding: '25px', margin: "25px", minWidth: '600px'}}>
+            {props.newLeaseButton}
+            {listLeases.length > 0 ?
             <Table hover>
                 <thead>
                     <tr>
-                        <td><b>Length</b></td>
-                        <td><b>Dates</b></td>
-                        <td><b>Lease Id</b></td>
                         <td><b>Unit Number</b></td>
+                        <td><b>Start Date</b></td>
+                        <td><b>End Dates</b></td>
+                        <td><b>Length</b></td>
                         <td><b>Balance</b></td>
                     </tr>
                 </thead>
@@ -30,6 +32,7 @@ function LeaseList(props) {
                     {listLeases}
                 </tbody>
             </Table>
+            : <h3>No Leases</h3>}
             </Card>
         </div>
     );

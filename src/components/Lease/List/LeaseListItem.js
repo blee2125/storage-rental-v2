@@ -37,8 +37,8 @@ function LeaseListItem(props) {
             <td>{customer ? customer.name : ''}</td>
             <td>{props.lease.rate}</td>
             <td>{balance ? Number(balance).toFixed(2) : '0'}</td>
-            <td>{props.lease.startDate}</td>
-            <td>{props.lease.endDate}</td>
+            <td>{DateFunc.monthDayYear(props.lease.startDate)}</td>
+            <td>{DateFunc.monthDayYear(props.lease.endDate)}</td>
             <td>{leaseLength}</td>
         </tr>
     );

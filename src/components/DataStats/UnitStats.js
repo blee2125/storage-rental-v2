@@ -20,7 +20,7 @@ function UnitStats() {
 
     return (
         <div>
-            <Card bg='light' border="secondary" style={{ width: '300px', padding: '25px', margin: "25px"}}>
+            <Card bg='light' border="secondary" style={{ width: '300px', padding: '25px', margin: "5px"}}>
                 <h4>Unit Stats</h4>
                 <p>Total Units - {units.length}</p>
                 <p>Current Leases - {currentLeases}</p>

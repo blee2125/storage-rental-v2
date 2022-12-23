@@ -7,7 +7,7 @@ function CustomerStats() {
 
     return (
         <div>
-            <Card bg='light' border="secondary" style={{ width: '300px', padding: '25px', margin: "25px"}}>
+            <Card bg='light' border="secondary" style={{ width: '300px', padding: '25px', margin: "5px"}}>
                 <h4>Customer Stats</h4>
                 <p>Total Customers - {customers.length}</p>
             </Card>
