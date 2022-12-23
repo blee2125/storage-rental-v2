@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { Button, Card, Table } from "react-bootstrap"
+import { Button, Card, Table, Col, Row } from "react-bootstrap"
 import LeaseList from './List/LeaseList'
 import FormatFunc from "../../functions/FormatFunc";
 import CalcFunc from "../../functions/CalcFunc";
@@ -28,6 +28,8 @@ function CustomerView(props) {
 
     return (
         <div>
+            <Row>
+            <Col lg='auto'>
             <Card bg='light' border="secondary" style={{ width: '350px', padding: '25px', margin: "25px"}}>
             <Table hover>
                 <tbody>
@@ -75,13 +77,14 @@ function CustomerView(props) {
             </Table>
             <Button onClick={editCustomer}>Edit</Button>
             </Card>
-
-            <Button onClick={leaseForm}>New Lease</Button>
-
+            </Col>
+            <Col lg='auto'>
             <LeaseList
                 leases={leases}
+                newLeaseButton={<Button style={{ width: "150px", alignSelf: 'center'}} onClick={leaseForm}>New Lease</Button>}
             />
-            
+            </Col>
+            </Row>
         </div>
     )
 }

@@ -24,10 +24,10 @@ function LeaseListItem(props) {
 
     return (
         <tr onClick={viewLease}>
-            <td>{leaseLength}</td>
-            <td>{DateFunc.monthDayYear(props.lease.startDate)} - {DateFunc.monthDayYear(props.lease.endDate)}</td>
-            <td>{props.lease._id}</td>
             <td>{unit ? unit.unitNumber : ''}</td>
+            <td>{DateFunc.monthDayYear(props.lease.startDate)}</td>
+            <td>{DateFunc.monthDayYear(props.lease.endDate)}</td>
+            <td>{leaseLength}</td>
             <td >{props.lease.totalCost ? calcBalance : ''}</td>
         </tr>
     );

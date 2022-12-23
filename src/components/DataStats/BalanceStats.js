@@ -10,7 +10,7 @@ function BalanceStats() {
 
     return (
         <div>
-            <Card bg='light' border="secondary" style={{ width: '300px', padding: '25px', margin: "25px"}}>
+            <Card bg='light' border="secondary" style={{ width: '300px', padding: '25px', margin: "5px"}}>
                 <h4>Balance Stats</h4>
                 <p>Total Outstanding Balances - ${calcBalance}</p>
             </Card>
